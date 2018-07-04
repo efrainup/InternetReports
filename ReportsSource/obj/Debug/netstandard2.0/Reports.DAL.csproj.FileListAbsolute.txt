@@ -1,0 +1,6 @@
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\ReportsSource\bin\Debug\netstandard2.0\Reports.DAL.deps.json
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\ReportsSource\bin\Debug\netstandard2.0\Reports.DAL.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\ReportsSource\obj\Debug\netstandard2.0\Reports.DAL.csprojAssemblyReference.cache
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\ReportsSource\obj\Debug\netstandard2.0\Reports.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\ReportsSource\obj\Debug\netstandard2.0\Reports.DAL.AssemblyInfoInputs.cache
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\ReportsSource\obj\Debug\netstandard2.0\Reports.DAL.AssemblyInfo.cs

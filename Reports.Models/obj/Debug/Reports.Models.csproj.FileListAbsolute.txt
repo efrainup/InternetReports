@@ -1,0 +1,10 @@
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\Reports.Models\bin\Debug\Reports.Models.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\Reports.Models\bin\Debug\Reports.Models.pdb
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\Reports.Models\obj\Debug\Reports.Models.csproj.CoreCompileInputs.cache
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\Reports.Models\obj\Debug\Reports.Models.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\Reports.Models\obj\Debug\Reports.Models.pdb
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\Reports.Models\bin\Debug\Reports.Models.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\Reports.Models\bin\Debug\Reports.Models.pdb
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\Reports.Models\obj\Debug\Reports.Models.csproj.CoreCompileInputs.cache
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\Reports.Models\obj\Debug\Reports.Models.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\Reports.Models\obj\Debug\Reports.Models.pdb

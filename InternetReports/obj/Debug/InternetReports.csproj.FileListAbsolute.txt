@@ -1,0 +1,218 @@
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\ApplicationInsights.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\InternetReports.dll.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\InternetReports.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\InternetReports.pdb
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\csc.exe
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\csc.exe.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\csc.rsp
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\csi.exe
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\csi.exe.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\csi.rsp
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.AppContext.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Console.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.IO.Compression.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Security.Claims.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Threading.Thread.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.ValueTuple.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\vbc.exe
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\vbc.exe.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\vbc.rsp
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\VBCSCompiler.exe
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Antlr3.Runtime.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.AI.Web.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Newtonsoft.Json.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.Helpers.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.Mvc.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.Optimization.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.Razor.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.WebPages.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.WebPages.Razor.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\WebGrease.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.Helpers.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.Mvc.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.Optimization.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.Razor.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.WebPages.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Web.WebPages.Razor.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Newtonsoft.Json.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Antlr3.Runtime.pdb
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.AI.Web.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\es\System.Web.Razor.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\es\System.Web.WebPages.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\obj\Debug\InternetReports.csprojAssemblyReference.cache
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\obj\Debug\InternetReports.csproj.CoreCompileInputs.cache
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\obj\Debug\InternetReports.csproj.CopyComplete
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\obj\Debug\InternetReports.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\obj\Debug\InternetReports.pdb
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Reportss.DAL.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Reportss.DAL.pdb
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Reportss.DAL.dll.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Reports.Models.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Reports.Models.pdb
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\ApplicationInsights.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\InternetReports.dll.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\InternetReports.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\InternetReports.pdb
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\csc.exe
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\csc.exe.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\csc.rsp
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\csi.exe
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\csi.exe.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\csi.rsp
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.AppContext.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Console.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.IO.Compression.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Security.Claims.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Threading.Thread.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.ValueTuple.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\vbc.exe
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\vbc.exe.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\vbc.rsp
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\VBCSCompiler.exe
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Antlr3.Runtime.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.AI.Web.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Newtonsoft.Json.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Reports.Models.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Reportss.DAL.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.Helpers.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.Mvc.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.Optimization.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.Razor.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.WebPages.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.WebPages.Razor.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\WebGrease.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Reports.Models.pdb
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Reportss.DAL.pdb
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Reportss.DAL.dll.config
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.Helpers.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.Mvc.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.Optimization.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.Razor.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.WebPages.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Web.WebPages.Razor.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Newtonsoft.Json.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Antlr3.Runtime.pdb
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.AI.Web.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\es\System.Web.Razor.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\es\System.Web.WebPages.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\obj\Debug\InternetReports.csprojAssemblyReference.cache
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\obj\Debug\InternetReports.csproj.CoreCompileInputs.cache
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\obj\Debug\InternetReports.csproj.CopyComplete
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\obj\Debug\InternetReports.dll
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\obj\Debug\InternetReports.pdb
+C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports - Latest Stable\InternetReports\bin\roslyn\System.Collections.Immutable.dll

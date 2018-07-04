@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetReports", "InternetReports\InternetReports.csproj", "{CE7530B0-D03D-46F5-8262-3C6F7037E5F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetReports.Tests", "InternetReports.Tests\InternetReports.Tests.csproj", "{A0496F19-783A-4D23-9998-8AA74A8EC5C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports.DAL", "Reportss.DAL\Reports.DAL.csproj", "{870CED31-CE01-46DF-8C9F-AFB88351A891}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports.Models", "Reports.Models\Reports.Models.csproj", "{E487D578-D56A-412C-9DD7-69372AA53683}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE7530B0-D03D-46F5-8262-3C6F7037E5F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE7530B0-D03D-46F5-8262-3C6F7037E5F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE7530B0-D03D-46F5-8262-3C6F7037E5F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE7530B0-D03D-46F5-8262-3C6F7037E5F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0496F19-783A-4D23-9998-8AA74A8EC5C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0496F19-783A-4D23-9998-8AA74A8EC5C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0496F19-783A-4D23-9998-8AA74A8EC5C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0496F19-783A-4D23-9998-8AA74A8EC5C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{870CED31-CE01-46DF-8C9F-AFB88351A891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{870CED31-CE01-46DF-8C9F-AFB88351A891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{870CED31-CE01-46DF-8C9F-AFB88351A891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{870CED31-CE01-46DF-8C9F-AFB88351A891}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E487D578-D56A-412C-9DD7-69372AA53683}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E487D578-D56A-412C-9DD7-69372AA53683}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E487D578-D56A-412C-9DD7-69372AA53683}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E487D578-D56A-412C-9DD7-69372AA53683}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF8F963D-EBC4-497F-B735-7AFB9D592631}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
+	EndGlobalSection
+EndGlobal
