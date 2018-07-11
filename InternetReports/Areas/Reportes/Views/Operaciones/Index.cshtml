@@ -5,20 +5,30 @@
 }
 
 <h2>Reporte de operaciones</h2>
+<h3>@ViewBag.NombreCliente</h3>
 
 <div class="row">
     
-    <div class="container" >
-        @using (Html.BeginForm("Index","Operaciones",FormMethod.Get,new { }))
+    <div class="container">
+        @using (Html.BeginForm("Index", "Operaciones", FormMethod.Get, new { }))
         {
             <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                 <label for="startDate">Fecha de inicio</label>
-                @Html.TextBox("startDate",null,new { type="date", @class = "form-control" })
+                @Html.TextBox("startDate", null, new { type = "date", @class = "form-control" })
             </div>
             <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                 <label for="endDate">Fecha fin</label>
-                @Html.TextBox("endDate", null, new { type = "date", @class="form-control" })
+                @Html.TextBox("endDate", null, new { type = "date", @class = "form-control" })
             </div>
+            if (User.IsInRole("Administrador"))
+            {
+                <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                    <label for="clienteId">Cliente</label>
+                    @Html.DropDownList("clienteId", (ViewBag.CatalogoClientes as SelectList), null, new {@class="form-control" })
+                </div>
+            }
+
+
             <button type="submit" class="btn btn-primary">Buscar</button>
         }
     </div>

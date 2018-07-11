@@ -6,7 +6,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\InternetReports\bin\Release\Publish</_PublishTargetUrl>
+    <_PublishTargetUrl>http://localhost/HinojosaReports</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -16,7 +16,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>06/13/2018 17:46:28</publishTime>
     </File>
     <File Include="Areas/Reportes/Views/Operaciones/Index.cshtml">
-      <publishTime>06/13/2018 17:46:05</publishTime>
+      <publishTime>07/06/2018 08:48:20</publishTime>
     </File>
     <File Include="Areas/Reportes/Views/Shared/_Layout.cshtml">
       <publishTime>06/09/2018 11:41:51</publishTime>
@@ -35,6 +35,12 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>06/07/2018 17:42:01</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>03/02/2015 08:32:26</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>03/02/2015 08:32:26</publishTime>
     </File>
     <File Include="bin/es/System.Web.Helpers.resources.dll">
       <publishTime>02/01/2018 11:21:06</publishTime>
@@ -58,10 +64,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/01/2018 11:21:06</publishTime>
     </File>
     <File Include="bin/InternetReports.dll">
-      <publishTime>06/14/2018 08:26:10</publishTime>
+      <publishTime>07/11/2018 11:08:50</publishTime>
     </File>
     <File Include="bin/InternetReports.pdb">
-      <publishTime>06/14/2018 08:26:10</publishTime>
+      <publishTime>07/11/2018 11:08:50</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>06/27/2017 12:59:34</publishTime>
@@ -84,11 +90,35 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     <File Include="bin/Microsoft.ApplicationInsights.dll">
       <publishTime>02/22/2018 13:36:52</publishTime>
     </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>04/03/2015 17:07:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>04/03/2015 17:07:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>04/03/2015 17:07:22</publishTime>
+    </File>
     <File Include="bin/Microsoft.AspNet.TelemetryCorrelation.dll">
       <publishTime>06/28/2017 15:05:26</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>10/16/2017 14:14:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>02/13/2018 16:28:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>02/13/2018 16:28:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>01/13/2014 16:11:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>02/13/2018 16:28:16</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>01/13/2014 16:11:12</publishTime>
     </File>
     <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll">
       <publishTime>04/25/2013 10:04:08</publishTime>
@@ -102,20 +132,23 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>02/18/2018 08:44:54</publishTime>
     </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>11/13/2012 12:19:34</publishTime>
+    </File>
     <File Include="bin/Reports.Models.dll">
-      <publishTime>06/14/2018 08:26:04</publishTime>
+      <publishTime>07/11/2018 11:08:46</publishTime>
     </File>
     <File Include="bin/Reports.Models.pdb">
-      <publishTime>06/14/2018 08:26:04</publishTime>
+      <publishTime>07/11/2018 11:08:46</publishTime>
     </File>
     <File Include="bin/Reportss.DAL.dll">
-      <publishTime>06/14/2018 08:26:05</publishTime>
+      <publishTime>07/11/2018 11:08:47</publishTime>
     </File>
     <File Include="bin/Reportss.DAL.dll.config">
       <publishTime>06/13/2018 14:36:14</publishTime>
     </File>
     <File Include="bin/Reportss.DAL.pdb">
-      <publishTime>06/14/2018 08:26:05</publishTime>
+      <publishTime>07/11/2018 11:08:47</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>12/13/2017 21:09:38</publishTime>
@@ -345,6 +378,18 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     <File Include="img/logotipo-hinojosagrupoBlanco.png">
       <publishTime>06/09/2018 10:17:17</publishTime>
     </File>
+    <File Include="img/logotipohinojosa-95.png">
+      <publishTime>06/13/2018 12:42:11</publishTime>
+    </File>
+    <File Include="Models/EF.Reverse.POCO.Core.ttinclude">
+      <publishTime>07/05/2018 16:15:21</publishTime>
+    </File>
+    <File Include="Models/EF.Reverse.POCO.ttinclude">
+      <publishTime>07/05/2018 16:15:21</publishTime>
+    </File>
+    <File Include="Readme.md">
+      <publishTime>07/11/2018 09:59:14</publishTime>
+    </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>06/07/2018 17:41:50</publishTime>
     </File>
@@ -387,6 +432,12 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     <File Include="Scripts/modernizr-2.8.3.js">
       <publishTime>06/07/2018 17:41:57</publishTime>
     </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>07/10/2018 17:20:28</publishTime>
+    </File>
+    <File Include="Views/Account/Registrar.cshtml">
+      <publishTime>07/05/2018 18:03:05</publishTime>
+    </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>06/07/2018 17:41:23</publishTime>
     </File>
@@ -400,7 +451,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>06/07/2018 17:41:23</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/13/2018 13:22:35</publishTime>
+      <publishTime>07/10/2018 17:31:09</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoginPartial.cshtml">
+      <publishTime>07/10/2018 17:07:49</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>06/07/2018 17:41:23</publishTime>
@@ -409,7 +463,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>06/07/2018 17:41:23</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/14/2018 08:26:11</publishTime>
+      <publishTime>07/11/2018 11:08:54</publishTime>
     </File>
   </ItemGroup>
 </Project>

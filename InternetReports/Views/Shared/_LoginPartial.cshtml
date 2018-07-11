@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNet.Identity
+@using InternetReports.AppExtensions
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account",new {area="" }, FormMethod.Post, new { id = "logoutForm", @class = "pull-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav">
+        <li style="height:auto">
+            @User.Identity.GetUserName() - @User.Identity.GetNombreCliente()
+        </li>
+        <li style="height:auto"><a style="height:auto; line-height:0; color:#cdcdcd !important;" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
+    </ul>
+    }
+}
+

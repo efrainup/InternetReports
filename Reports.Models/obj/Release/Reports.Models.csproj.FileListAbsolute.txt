@@ -1,6 +1,0 @@
-C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\Reports.Models\bin\Release\Reports.Models.dll
-C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\Reports.Models\bin\Release\Reports.Models.pdb
-C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\Reports.Models\obj\Release\Reports.Models.csprojAssemblyReference.cache
-C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\Reports.Models\obj\Release\Reports.Models.csproj.CoreCompileInputs.cache
-C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\Reports.Models\obj\Release\Reports.Models.dll
-C:\Users\Analista.Programador\Documents\Codigo fuente\InternetReports\Reports.Models\obj\Release\Reports.Models.pdb

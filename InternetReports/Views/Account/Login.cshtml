@@ -1,0 +1,37 @@
+﻿@model  InternetReports.Models.LoginViewModel
+@{
+    ViewBag.Title = "Bienvenido";
+}
+
+<h2>Bienvenido</h2>
+
+<div class="col-md-8">
+    <h1>Grupo D.A. Hinojosa</h1>
+    <p class="lead">
+        Bienvenido al portal de clientes de Grupo D.A. Hinojosa.
+
+    </p>
+    <p>
+        En este portal nuestros clientes encontrar&aacute;n información relevante de los servicios contratados con
+        las diferentes unidades de negocio de Grupo D.A. Hinojosa.
+    </p>
+        
+</div>
+<div class="col-md-4">
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, "Contraseña")
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    }
+</div>

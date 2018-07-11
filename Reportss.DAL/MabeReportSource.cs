@@ -78,7 +78,9 @@ namespace Reports.DAL
                                     R.dFechaApertura AS FechaApertura,
                                     P.sNumProceso AS Proceso,
                                     EF.sFechaEnvio AS FechaDeEnvioCuentaDeGastos,
-                                    REVA.dFechaRevalidacion AS FechaRevalidacionBL
+                                    REVA.dFechaRevalidacion AS FechaRevalidacionBL,
+									PREV.dRecInicio AS [FechaPrevio],
+									PREV.dRecFin AS [FechaConclusionPrevio]
                                  FROM [1G_DAH_AA].[SIR].[SIR_60_REFERENCIAS] R
                                  LEFT JOIN [1G_DAH_AA].[SIR].SIR_149_PEDIMENTO PED ON R.nIdPedimento149 = PED.nIdPedimento149
                                  LEFT JOIN dbo.GT_PROCESOS P ON R.sReferencia=P.sReferencia
@@ -88,6 +90,7 @@ namespace Reports.DAL
 									( SELECT ROW_NUMBER() OVER (PARTITION BY sReferencia ORDER BY sReferencia,dFechaCaptura) id, nIdReferencia60, sReferencia, dFechaRevalidacion FROM SIR.SIR_50_REVALIDACION REV 
 										
 									) AS REVA on REVA.sReferencia=R.sReferencia and REVA.id=1
+                                 LEFT JOIN [1G_DAH_AA].[SIR].[SIR_161_PROG_PREVIOS_REF] PREV ON PREV.nIdReferencia60=R.nIdReferencia60 
                                  WHERE R.dFechaApertura BETWEEN '{1}' AND '{2}'     
                                  AND R.nIdCliente = {0}";
 
