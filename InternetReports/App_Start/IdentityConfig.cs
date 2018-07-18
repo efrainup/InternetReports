@@ -21,11 +21,11 @@ namespace InternetReports.App_Start
             
             App.CreatePerOwinContext(() => new AccountDbContext());
             App.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
-            //App.CreatePerOwinContext<RoleManager<AppRole>>((options, context) =>
-            //    new RoleManager<AppRole>(
-            //        new RoleStore<AppRole>(context.Get<AccountDbContext>())
-            //        ) 
-            //);
+            App.CreatePerOwinContext<RoleManager<AppRole>>((options, context) =>
+                new RoleManager<AppRole>(
+                    new RoleStore<AppRole>(context.Get<AccountDbContext>())
+                    )
+            );
 
             App.UseCookieAuthentication(new CookieAuthenticationOptions()
             {
