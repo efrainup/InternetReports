@@ -24,7 +24,6 @@ namespace Reports.Models
         [DisplayName("Fecha de pago")]
         //[Column("Fecha Pago")]
         [DisplayFormat(DataFormatString = "{0:d}")]
-        [Column("FechaApertura")]
         public DateTime? FechaPago { get; set; }
         //[Column("DescripcionAA")]
         public string Descripcion { get; set; }
@@ -33,8 +32,8 @@ namespace Reports.Models
         public string Status { get; set; }
 
         [Column("FechaApertura")]
-        [DisplayName("Fecha de alta de factura")]
-        public DateTime? FechaAltaFactura { get; set; }
+        [DisplayName("Fecha de apertura")]
+        public DateTime? FechaApertura { get; set; }
 
         [DisplayName("Fecha de arribo de buque")]
         public DateTime? FechaArriboDeBuque { get; set; }
@@ -48,5 +47,6 @@ namespace Reports.Models
         public DateTime? FechaPrevio { get; set; }
         [DisplayName("Fecha de conclusión de previo")]
         public DateTime? FechaConclusionPrevio { get; set; }
+        public string Observaciones { get; set; }
     }
 }

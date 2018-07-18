@@ -35,6 +35,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,7 +44,8 @@
     <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>3</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -193,7 +195,10 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Reportes\Controllers\OperacionesController.cs" />
+    <Compile Include="Areas\Reportes\Models\ObservacionReporte.cs" />
     <Compile Include="Areas\Reportes\Models\Clasificaciones.cs" />
+    <Compile Include="Areas\Reportes\Models\OperacionViewModel.cs" />
+    <Compile Include="Areas\Reportes\Models\Reportes.cs" />
     <Compile Include="Areas\Reportes\Models\ReportItem.cs" />
     <Compile Include="Areas\Reportes\ReportesAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -244,6 +249,12 @@
       <DependentUpon>ARCHIVOS_ALT.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportesDbContext.cs" />
+    <Compile Include="ReportesDbContextMigrations\201807172139401_AgregarObservacionesReportes.cs" />
+    <Compile Include="ReportesDbContextMigrations\201807172139401_AgregarObservacionesReportes.Designer.cs">
+      <DependentUpon>201807172139401_AgregarObservacionesReportes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesDbContextMigrations\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Data\ArchivosALTContext.cs" />
@@ -263,6 +274,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ARCHIVOS_ALT1.cs</LastGenOutput>
     </Content>
+    <Content Include="Robots.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -275,6 +287,8 @@
     <Content Include="Areas\Reportes\Views\Operaciones\Create.cshtml" />
     <Content Include="Models\EF.Reverse.POCO.Core.ttinclude" />
     <Content Include="Models\EF.Reverse.POCO.ttinclude" />
+    <Content Include="Areas\Reportes\Views\Operaciones\Editar.cshtml" />
+    <Content Include="Areas\Reportes\Views\Operaciones\Cerrar.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Readme.md" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -308,6 +322,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Registrar.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutChildWindows.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -347,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807061359178_AddColumn.resx">
       <DependentUpon>201807061359178_AddColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesDbContextMigrations\201807172139401_AgregarObservacionesReportes.resx">
+      <DependentUpon>201807172139401_AgregarObservacionesReportes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

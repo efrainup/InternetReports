@@ -9,9 +9,9 @@ using System.Linq;
 
 namespace Reports.DAL
 {
-    public class MabeReportSource<T> : AReportSource<T>, IReportSource<T> where T : class
+    public class MabeReportSource : AReportSource<Models.Partida>, IReportSource<Models.Partida>
     {
-        private string id;
+        private string idCliente;
         private DateTime inicio;
         private DateTime final;
         Database db;
@@ -26,7 +26,7 @@ namespace Reports.DAL
 
         public MabeReportSource(string clienteId, DateTime fechaInicio, DateTime fechaFin)
         {
-            id = clienteId;
+            idCliente = clienteId;
             inicio = fechaInicio;
             final = fechaFin;
             DatabaseProviderFactory dbFactory = new DatabaseProviderFactory();
@@ -41,31 +41,26 @@ namespace Reports.DAL
         /// Obtiene la informacion del sistema SIR
         /// </summary>
         /// <returns></returns>
-        protected async Task<IEnumerable<T>> CreateGetReportQueryAsync()
+        protected async Task<IEnumerable<Models.Partida>> CreateGetReportQueryAsync()
         {
-            
+            //Obtenemos las referencias del sistema de Trafico que se van a buscar
+            var referenciasTrafico = await GetDataFromSAAI();
 
-            
-            string sqlQuery = "SELECT " +
-                               "   R.sReferencia as Referencia, " +
-                               "   CASE R.nTipoOperacion WHEN 1 THEN 'IMPORT' WHEN 2 THEN 'EXPORT' WHEN 0 THEN 'IMPORT/EXPORT' ELSE '' END as Movimiento, " +
-                               "   PT.sPatente as Patente, " +
-                               "   A.sClaveAduana as Aduana, " +
-                               "   A.sClaveSeccion as Seccion, " +
-                               "   P.sPedimento as Pedimento, " +
-                               "   CD.sClave as [Clave Pedimento], " +
-                               "   Convert(varchar(10), P.dFechaPago, 103) as [Fecha Pago], " +
-                               "   '' as DescripcionAA " +
-                               "FROM SIR.SIR_60_REFERENCIAS R " +
-                               "	LEFT JOIN SIR.SIR_149_PEDIMENTO P ON R.nIdPedimento149 = P.nIdPedimento149 " +
-                               "	LEFT JOIN SIR.SIR_71_SUCURSAL_PATENTE_ADUANA SPA ON R.nIdSucPatAdu71 = SPA.nIdSucPatAdu71 " +
-                               "	LEFT JOIN SIR.SIR_70_PATENTES PT ON SPA.nIdPatente70 = PT.nIdPatente70 " +
-                               "	LEFT JOIN SIR.SIR_06_ADUANA_SEC A ON R.nIdAduSec06 = A.nIdAduSec06 " +
-                               "	LEFT JOIN SIR.SIR_28_CLAVES_DOCTOS CD ON R.nIdClaveDocto28 = CD.nIdClaveDocto28 " +
-                               "WHERE (P.sFirmaPedimento <> '' AND P.sFirmaPedimento IS NOT NULL) " +
-                               "	AND R.nIdImex = " + id +
-                               "	AND P.dFechaPago >= '" + inicio.ToString("s") + "' AND P.dFechaPago <= '" + final.ToString("s") + "'";
+            //Creamos un parámetro para la búsqueda
+            string referenciasABuscar = "";
+            if (referenciasTrafico.Count() > 1)
+            {
+                referenciasABuscar = referenciasTrafico.Select(sel => sel.Refcia21).Aggregate((a, b) => (a.StartsWith("'") ? a : "'" + a + "'") + ",'" + b + "'");
+            }
+            else if (referenciasTrafico.Count() == 1)
+            {
+                referenciasABuscar = "'" + referenciasTrafico.First().Refcia21 + "'";
+            }
 
+
+
+            IEnumerable<Models.Partida> t;
+            
 
             string sqlQuery2 = @"SELECT 
                                     R.sReferencia AS Referencia,
@@ -73,34 +68,55 @@ namespace Reports.DAL
                                     CASE R.nTipoOperacion WHEN 0 THEN 'IMPORT/EXPORT'     
                                                         WHEN 1 THEN 'IMPORT'            
                                                         WHEN 2 THEN 'EXPORT'            
-                                                        ELSE '' END AS Movimiento,     
+                                                        ELSE '' END AS Movimiento, 
+                                    ADU.sClaveAduana AS Aduana,
                                     R.sMercanciaDesc AS Descripcion,                       
                                     R.dFechaApertura AS FechaApertura,
+                                    COALESCE(PED.dfechapago,REFSAAI.dFechaPago) AS FechaPago,
                                     P.sNumProceso AS Proceso,
                                     EF.sFechaEnvio AS FechaDeEnvioCuentaDeGastos,
                                     REVA.dFechaRevalidacion AS FechaRevalidacionBL,
 									PREV.dRecInicio AS [FechaPrevio],
 									PREV.dRecFin AS [FechaConclusionPrevio]
                                  FROM [1G_DAH_AA].[SIR].[SIR_60_REFERENCIAS] R
+                                 LEFT JOIN [1G_DAH_AA].[Admin].[ADMINC_06_ADUANA_SEC] ADU ON ADU.[nIdAduSec06]=R.[nIdAduSec06]
                                  LEFT JOIN [1G_DAH_AA].[SIR].SIR_149_PEDIMENTO PED ON R.nIdPedimento149 = PED.nIdPedimento149
                                  LEFT JOIN dbo.GT_PROCESOS P ON R.sReferencia=P.sReferencia
                                  LEFT JOIN [dbo].[db_referencias_SAAI] REFSAAI ON REFSAAI.sReferencia=R.sReferencia
                                  LEFT JOIN [dbo].[Pase_Envio_Facturacion_LF] EF ON EF.nIdReferencia=R.nIdReferencia60
                                  LEFT JOIN 
-									( SELECT ROW_NUMBER() OVER (PARTITION BY sReferencia ORDER BY sReferencia,dFechaCaptura) id, nIdReferencia60, sReferencia, dFechaRevalidacion FROM SIR.SIR_50_REVALIDACION REV 
+									( SELECT ROW_NUMBER() OVER (PARTITION BY sReferencia ORDER BY dFechaRevalidacion desc) id, nIdReferencia60, sReferencia, dFechaRevalidacion FROM SIR.SIR_50_REVALIDACION REV 
 										
 									) AS REVA on REVA.sReferencia=R.sReferencia and REVA.id=1
                                  LEFT JOIN [1G_DAH_AA].[SIR].[SIR_161_PROG_PREVIOS_REF] PREV ON PREV.nIdReferencia60=R.nIdReferencia60 
-                                 WHERE R.dFechaApertura BETWEEN '{1}' AND '{2}'     
-                                 AND R.nIdCliente = {0}";
+                                 WHERE (R.dFechaApertura BETWEEN '{1}' AND '{2}'     
+                                 AND R.nIdCliente = {0}) ";
 
-            DbCommand dbCommand = db.GetSqlStringCommand(string.Format(sqlQuery2,id,inicio.ToString("s"),final.ToString("s")));
+            if (referenciasABuscar.Length > 0) {
+                sqlQuery2 += $" OR R.sReferencia IN({referenciasABuscar})";
+            }
+
+            sqlQuery2 += " GROUP BY R.sReferencia,REFSAAI.sPedimento,PED.sPedimento,R.nTipoOperacion,ADU.sClaveAduana,R.sMercanciaDesc,R.dFechaApertura,P.sNumProceso,EF.sFechaEnvio,REVA.dFechaRevalidacion,PREV.dRecInicio,PREV.dRecFin,PED.dfechapago,REFSAAI.dFechaPago";
+
+            DbCommand dbCommand = db.GetSqlStringCommand(string.Format(sqlQuery2,idCliente,inicio.ToString("s"),final.ToString("s")));
             using (dbCommand.Connection = db.CreateConnection())
             {
                 dbCommand.Connection.Open();
                 DbDataReader reportResultReader = await dbCommand.ExecuteReaderAsync();
-                return Fill(reportResultReader);
+                 t = Fill(reportResultReader);
             }
+
+            //Se hace un "join" para asignar la fecha de alta
+            t.GroupJoin(referenciasTrafico, a => a.Referencia, b => b.Refcia21, (partida, referenciasDeTrafico) =>
+               {
+                   if (referenciasTrafico.Any()) {
+                       partida.FechaApertura = referenciasTrafico.First().Frecep21;
+                    }
+
+                   return partida;
+               });
+
+            return t;
         }
 
         //protected async Task<IEnumerable<T>> GetClasification(List<InternetReports.Reports.Models.Partida> partidas)
@@ -126,16 +142,18 @@ namespace Reports.DAL
         //}
 
         /// <summary>
-        /// Obtiene la información del sistema SAAI
+        /// Obtiene la información de la tabla stctrl21
         /// </summary>
         /// <returns></returns>
-        protected async Task<IEnumerable<T>> GetDataFromSAAI()
+        protected async Task<IEnumerable<Trafico.Models.Stcrl21Entity>> GetDataFromSAAI()
         {
             DateTime inicio = this.inicio;
             DateTime fin = this.final;
-            string sqlQuery = string.Format("SELECT E.refcia01 as Referencia " +
-                            " FROM ssdage01.dbf as E" +
-                            " WHERE E.fecpag01 >= DATE({0}) and E.fecpag01 <= DATE({1})",inicio.ToString("yyyy,MM,dd"),final.ToString("yyyy,MM,dd"));
+            string sqlQuery = string.Format(@"SELECT REFCIA21 AS REFCIA21,
+                                                     FRECEP21 as FRECEP21 
+                                              FROM stctrl21.dbf 
+                                              WHERE DTOS(FRECEP21) BETWEEN '{0}' AND '{1}' AND cvecli21={2}"
+            , inicio.ToString("yyyyMMdd"),final.ToString("yyyyMMdd"),idCliente);
             
             DbCommand dbCommand = dbSAAI.GetSqlStringCommand(sqlQuery);
             using (dbCommand.Connection = dbSAAI.CreateConnection())
@@ -143,13 +161,13 @@ namespace Reports.DAL
                 await dbCommand.Connection.OpenAsync();
                 DbDataReader dataReader = await dbCommand.ExecuteReaderAsync();
 
-                return Fill(dataReader);
+                return Fill<Trafico.Models.Stcrl21Entity>(dataReader);
             }
         }
 
-        public async Task<IEnumerable<T>> GetReportAsync()
+        public async Task<IEnumerable<Models.Partida>> GetReportAsync()
         {
-//            return await GetDataFromSAAI();
+            //var s = await GetDataFromSAAI();
             return await CreateGetReportQueryAsync(); 
         }
     }

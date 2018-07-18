@@ -6,7 +6,7 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav">
+    <ul class="nav" style="text-align:right;">
         <li style="height:auto">
             @User.Identity.GetUserName() - @User.Identity.GetNombreCliente()
         </li>

@@ -1,0 +1,31 @@
+﻿@model InternetReports.Areas.Reportes.Models.OperacionViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cerrando</title>
+</head>
+<body>
+    <script>
+        (function (window) {
+
+            var observaciones = '@Model.Observaciones';
+                var callback = '@Model.Callback';
+                var referencia = '@Model.Referencia';
+                var proceso = '@Model.Proceso';
+
+
+                window.opener.window[callback].call(window.opener, referencia, proceso, observaciones);
+                window.close();
+           
+
+        })(window);
+       
+    </script>
+</body>
+</html>

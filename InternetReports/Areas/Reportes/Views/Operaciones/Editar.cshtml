@@ -1,0 +1,70 @@
+﻿@model InternetReports.Areas.Reportes.Models.OperacionViewModel
+
+@{
+    ViewBag.Title = "Editar observaciones";
+    Layout = "~/Views/Shared/_LayoutChildWindows.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar observaciones</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Observaciones de la operacion</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Referencia, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.Referencia, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @Html.HiddenFor(model => model.ObservacionesId)
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                    <input type="reset" value="Cancelar" onclick="javascript: window.close(); " class="btn btn-secondary" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @section Scripts{
+        <script>
+            (function (window) {
+                function GuardarObservaciones(observaciones,referencia,proceso) {
+                    var callback = new URL(document.location).searchParams.get("Callback");
+                    var referencia = new URL(document.location).searchParams.get("Referencia");
+                    var proceso = new URL(document.location).searchParams.get("Proceso");
+
+
+                    window.opener.window[callback].call(window.opener, referencia, proceso, observaciones);
+                    window.close();
+                }
+
+                window.EditarView = window.EditarView || {};
+                window.EditarView.GuardarObservaciones = GuardarObservaciones;
+
+            })(window);
+        </script>
+
+    }
+</body>
+</html>
