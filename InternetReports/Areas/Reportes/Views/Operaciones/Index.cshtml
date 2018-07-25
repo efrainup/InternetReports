@@ -8,19 +8,20 @@
 
 @section Styles{
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.dataTables.min.css" rel="stylesheet" />
 }
 
 <h2>Reporte de operaciones</h2>
-<h3>@ViewBag.NombreCliente</h3>
+<h3 id="nombre-cliente">@ViewBag.NombreCliente</h3>
 
 <div class="row">
 
-    <div class="container">
-        @using (Html.BeginForm("Index", "Operaciones", FormMethod.Get, new { }))
+    <div class="col-md-12 fi">
+        @using (Html.BeginForm("Index", "Operaciones", FormMethod.Get, new {}))
         {
             <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                 <label for="startDate">Fecha de inicio</label>
-                @Html.TextBox("startDate", null, new { type = "date", @class = "form-control" })
+                @Html.TextBox("startDate", null, new { type = "date", @class = "form-control", oninput="javscript: validarFecha(this.value);" })
             </div>
             <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                 <label for="endDate">Fecha fin</label>
@@ -35,7 +36,7 @@
             }
 
 
-            <button type="submit" class="btn btn-primary">Buscar</button>
+            <button id="submit-buscar" type="submit" class="btn btn-primary">Buscar</button>
         }
     </div>
 </div>
@@ -44,120 +45,147 @@
 @*<p>
         @Html.ActionLink("Create New", "Create")
     </p>*@
-<div class="row">
-    <div class="container">
+<div>
+    <div >
 
         <a href="#" data-role="button" onclick="javascript: operacionesIndex.exportarExcel('xlsx');" >Descargar excel</a>
-        <table class="table" id="reporte-tabla" class="compact" style="width:100%" data-paging="false" data-ordering="false" data-searching="false">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Referencia)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Pedimento)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Proceso)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Movimiento)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Descripcion)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Aduana)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FechaApertura)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FechaRevalidacionBL)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FechaPrevio)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FechaConclusionPrevio)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FechaPago)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FechaDeEnvioCuentaDeGastos)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Observaciones)
-                    </th>
-                    @*Cuando es administrador o editor, se agrega un campo editable de observaciones*@
-                    @if (User.IsInRole("Administrador"))
+        <div>
+            <table class="table compact" id="reporte-tabla" style="width:100%" data-paging="false" data-ordering="false" data-searching="false">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Referencia)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Pedimento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Proceso)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Movimiento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Aduana)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaApertura)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaArriboDeBuque)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaRevalidacionBL)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaTraslado)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaPrevio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaConclusionPrevio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaPago)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaSalida)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaDeCuentaDeGastos)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaDeEnvioCuentaDeGastos)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Observaciones)
+                        </th>
+                        @*Cuando es administrador o editor, se agrega un campo editable de observaciones*@
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <th></th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
                     {
-                        <th></th>
+                        <tr>
+                            <td data-bind="referencia">
+                                @Html.DisplayFor(modelItem => item.Referencia)
+                            </td>
+                            <td data-bind="pedimento">
+                                @Html.DisplayFor(modelItem => item.Pedimento)
+                            </td>
+                            <td data-bind="proceso">
+                                @Html.DisplayFor(modelItem => item.Proceso)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Movimiento)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Aduana)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaApertura)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaArriboDeBuque)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaRevalidacionBL)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaTraslado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaPrevio)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaConclusionPrevio)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaPago)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaSalida)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaDeCuentaDeGastos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaDeEnvioCuentaDeGastos)
+                            </td>
+                            <td data-bind="observaciones">
+                                @Html.DisplayFor(modelItem => item.Observaciones)
+                            </td>
+                            @if (User.IsInRole("Administrador"))
+                            {
+                                <td>@Html.ActionLink("Editar", "Editar", new OperacionViewModel { Referencia = item.Referencia, Proceso = item.Proceso, ClienteId = Request.Params["clienteId"], Callback = "ActualizarObservaciones" }, new { onclick = "javascript: window.open(this.href,'Editar','width=420px,height=520px;'); return false;" })</td>
+                            }
+                            @*<td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>*@
+                        </tr>
                     }
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                <tr>
-                    <td data-bind="referencia">
-                        @Html.DisplayFor(modelItem => item.Referencia)
-                    </td>
-                    <td  data-bind="pedimento">
-                        @Html.DisplayFor(modelItem => item.Pedimento)
-                    </td>
-                    <td data-bind="proceso">
-                        @Html.DisplayFor(modelItem => item.Proceso)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Movimiento)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Descripcion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Aduana)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaApertura)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaRevalidacionBL)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaPrevio)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaConclusionPrevio)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaPago)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaDeEnvioCuentaDeGastos)
-                    </td>
-                    <td data-bind="observaciones">
-                        @Html.DisplayFor(modelItem => item.Observaciones)
-                    </td>
-                    @if (User.IsInRole("Administrador"))
-                    {
-                        <td>@Html.ActionLink("Editar", "Editar",  new OperacionViewModel {  Referencia=item.Referencia, Proceso=item.Proceso, ClienteId=Request.Params["clienteId"] ,Callback= "ActualizarObservaciones" },new {onclick="javascript: window.open(this.href,'Editar','width=420px,height=380px;'); return false;" })</td>
-                    }
-                    @*<td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>*@
-                </tr>
-                }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 @section Scripts{
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script>
         (function (window) {
@@ -165,21 +193,29 @@
 
             //Datatables Defaults
 
-            //$.fn.dataTable.defaults.oLanguage.sUrl = "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json";
+            $.fn.dataTable.defaults.oLanguage.sUrl = "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json";
 
             $(document).ready(function () {
-                //$("#reporte-tabla").DataTable();
+                $("#reporte-tabla").DataTable({
+                    fixedHeader: {
+                        header: true,
+                        headerOffset: $("header").height()
+                    }
+                });
             })
 
 
             
 
             function exportarExcel(type, fn, dl) {
+
+                var nombreCliente = document.getElementById("nombre-cliente").innerText;
+
                 var tablaAExportar = document.getElementById('reporte-tabla');
                 var wb = XLSX.utils.table_to_book(tablaAExportar, { sheet: "Reporte de operaciones" });
                 return dl ?
                     XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
-                    XLSX.writeFile(wb, fn || ('test.' + (type || 'xlsx')));
+                    XLSX.writeFile(wb, fn || ('Reporte de operaciones ' + nombreCliente + '.' + (type || 'xlsx')));
             }
 
             window.operacionesIndex = window.operacionesIndex || {};
@@ -191,6 +227,20 @@
             $("#reporte-tabla").find("td[data-bind=referencia]:contains(" + referencia + ") ~ td[data-bind=proceso]:contains(" + proceso + ") ~ td[data-bind=observaciones]").text(observaciones);
         }
 
+        function validarFecha(fecha) {
+            if (fecha == "" || fecha.split("-") == 3) {
+                return true;
+            }
+
+            fechaDividida = fecha.split("-");
+            var fechaMaximaPermitida = new Date(fechaDividida[0], fechaDividida[1] - 1, fechaDividida[2]);
+
+            //Se agregan 30 dias
+            fechaMaximaPermitida = new Date(fechaMaximaPermitida.getTime() + 2592000000);
+
+            elementoFechaFinal = document.getElementsByName("endDate")[0];
+            elementoFechaFinal.max = fechaMaximaPermitida.toISOString().substr(0,10);
+        }
         
 
     </script>

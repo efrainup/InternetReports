@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reports.DAL
+namespace Hinojosa.RECOVFP.DataAccessLayer.Repositorios
 {
     public abstract class AReportSource<T>
     {
@@ -88,25 +88,9 @@ namespace Reports.DAL
                                 assignedValue = Convert.ChangeType(value, properties[i].PropertyType);
                             }
                             
-                            
-                            ////Se verifica si es nullable
-                            //if (properties[i].PropertyType.IsGenericType)
-                            //{
-                            //    if(properties[i].PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
-                            //    {
-                            //        value = null;
-                            //    }
-                            //}
-
-
 
                         }
-                        //else
-                        //{
-                        //    assignedValue = Convert.ChangeType(value, properties[i].PropertyType);
-                        //}
-
-                        //Asigna el alor a la entidad, pero la convierte al tipo de dato requerido
+                        
                         typeOfT.GetProperty(propertyName).SetValue(instance, assignedValue);
                     }
                 }

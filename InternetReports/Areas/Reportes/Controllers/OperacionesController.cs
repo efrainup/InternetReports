@@ -12,6 +12,7 @@ using InternetReports.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
+using Hinojosa.Common.DataAccessLayer.Repositorios;
 
 namespace InternetReports.Areas.Reportes.Controllers
 {
@@ -23,7 +24,32 @@ namespace InternetReports.Areas.Reportes.Controllers
         protected AppUserManager _userManager;
         protected ReportesDbContext ReportesDb = new ReportesDbContext();
 
-        protected ARCHIVOS_ALT Catalogos = new ARCHIVOS_ALT();
+        //Este contexto de EnttyFramework se declara como estático para aprovechar el uso del cache de objetos de entity framwork
+        private static ARCHIVOS_ALT _catalogos;
+        protected ClientesRepositorio Catalogos
+        {
+            //get
+            //{
+            //    _catalogos  = _catalogos ??  new ARCHIVOS_ALT();
+            //    return _catalogos;
+            //}
+            get
+            {
+                return Repositorio;
+            }
+        }
+
+        ClientesRepositorio repositorio;
+        ClientesRepositorio Repositorio
+        {
+            get
+            {
+                repositorio = repositorio ?? new ClientesRepositorio();
+                return repositorio;
+            }
+        }
+
+
         public AppUserManager UserManager
         {
             get
@@ -78,7 +104,7 @@ namespace InternetReports.Areas.Reportes.Controllers
             {
                 clienteId = clienteId ?? "0";
                 int idClienteNumero = Convert.ToInt32(clienteId);
-                ViewBag.NombreCliente = Catalogos.CatClientes
+                ViewBag.NombreCliente = (await Catalogos.Recuperar())
                     .Where(w => w.IdCli == idClienteNumero)
                     .Select(s => s.Nom1)
                     .FirstOrDefault();
@@ -93,8 +119,9 @@ namespace InternetReports.Areas.Reportes.Controllers
             //En el caso de que el rol sea administrador hay que cargar los clientes en la vista
             if (User.IsInRole("Administrador"))
             {
-                Catalogos.Configuration.AutoDetectChangesEnabled = false;
-                ViewBag.CatalogoClientes = new SelectList(Catalogos.CatClientes.Select(s => new {IdCli = s.IdCli, Nom1 = s.Nom1 }).ToList(),"IdCli","Nom1");
+                //Catalogos.Configuration.AutoDetectChangesEnabled = false;
+                
+                ViewBag.CatalogoClientes = new SelectList((await Catalogos.Recuperar()).Select(s => new {IdCli = s.IdCli, Nom1 = s.Nom1 }).ToList(),"IdCli","Nom1");
             }
 
             //Busqueda de resultados
@@ -103,16 +130,19 @@ namespace InternetReports.Areas.Reportes.Controllers
 
             var referencias = resultados.Select(s => "'" + s.Referencia + "'");
             string referenciascadena = "";
-            string sqlQuery = "SELECT * FROM ObservacionesReportes WHERE ReporteId = 'Operaciones' AND ClienteId = @ClienteId ";
+            string consultaObservaciones = "SELECT * FROM EdicionesReportes WHERE ReporteId = 'Operaciones' AND Campo='Observaciones' AND ClienteId = @ClienteId ";
+            string consultaFechasDeSalidaEditadas = "SELECT * FROM EdicionesReportes WHERE ReporteId = 'Operaciones' AND Campo='FechaSalida' AND ClienteId = @ClienteId ";
+
             if (referencias.Count() > 0)
             {
                 referenciascadena = referencias.Aggregate((previo, siguiente) => previo + "," + siguiente);
-                sqlQuery += " AND IdentificadorRegistro IN("+referenciascadena+")";
-
+                
 
                 //Se agregan las observaciones
+                consultaObservaciones += " AND IdentificadorRegistro IN("+referenciascadena+")";
+
                 var observaciones = ReportesDb.ObservacionesReportes//.Where(o => o.ClienteId == clienteId && referencias.Any(a=> a == o.IdentificadorRegistro) )
-                    .SqlQuery(sqlQuery, new SqlParameter("@ClienteId", clienteId))
+                    .SqlQuery(consultaObservaciones, new SqlParameter("@ClienteId", clienteId))
                     .ToArray();
 
                 if (observaciones != null && observaciones.Count() > 0)
@@ -122,7 +152,28 @@ namespace InternetReports.Areas.Reportes.Controllers
                         var observacion = observacionesList.FirstOrDefault();
                         if (observacion != null)
                         {
-                            itemReporte.Observaciones = observacion.Observacion;
+                            itemReporte.Observaciones = observacion.Valor;
+                        }
+
+                        return itemReporte;
+                    });
+                }
+
+                //Se agregan las fechas de salida editadas
+                consultaFechasDeSalidaEditadas += " AND IdentificadorRegistro IN(" + referenciascadena + ")";
+
+                var fechasDeSalidas = ReportesDb.ObservacionesReportes//.Where(o => o.ClienteId == clienteId && referencias.Any(a=> a == o.IdentificadorRegistro) )
+                    .SqlQuery(consultaFechasDeSalidaEditadas, new SqlParameter("@ClienteId", clienteId))
+                    .ToArray();
+
+                if (fechasDeSalidas != null && fechasDeSalidas.Count() > 0)
+                {
+                    resultados = resultados.GroupJoin(fechasDeSalidas, itemReporte => itemReporte.Referencia, itemFechaDeSalidaEditada => itemFechaDeSalidaEditada.IdentificadorRegistro, (itemReporte, fechaDeSalidaList) =>
+                    {
+                        var fechaSalidaItem = fechaDeSalidaList.FirstOrDefault();
+                        if (fechaSalidaItem != null)
+                        {
+                            itemReporte.FechaSalida = (DateTime?)Convert.ChangeType(fechaSalidaItem.Valor,Type.GetType(fechaSalidaItem.TipoNet));
                         }
 
                         return itemReporte;
@@ -139,15 +190,21 @@ namespace InternetReports.Areas.Reportes.Controllers
         [HttpGet]
         public async Task<ActionResult> Editar(string clienteId, string referencia)
         {
-            ObservacionReporte observacionReporte = ReportesDb.ObservacionesReportes.FirstOrDefault(f => f.IdentificadorRegistro == referencia && f.ClienteId == clienteId);
+            List<EdicionReporte> edicionesReporte = ReportesDb.ObservacionesReportes.Where(f => f.IdentificadorRegistro == referencia && f.ClienteId == clienteId).ToList();
+            EdicionReporte observacionReporte = edicionesReporte.FirstOrDefault(f => f.Campo == "Observaciones");
+            EdicionReporte fechaSalidaReporte = edicionesReporte.FirstOrDefault(f => f.Campo == "FechaSalida");
+
             OperacionViewModel operacionViewModel = new OperacionViewModel()
             {
-                ObservacionesId = observacionReporte != null ? observacionReporte.IdAtributo : 0,
+                ObservacionesId = observacionReporte != null ? observacionReporte.EdicionId : 0,
                 Referencia = referencia,
                 ClienteId = clienteId,
-                Observaciones = observacionReporte != null ? observacionReporte.Observacion : ""
+                Observaciones = observacionReporte != null ? observacionReporte.Valor : "",
+                FechaSalidaId = fechaSalidaReporte != null ? fechaSalidaReporte.EdicionId : 0,
+                FechaSalida = fechaSalidaReporte != null ? (DateTime?)Convert.ChangeType(fechaSalidaReporte.Valor, Type.GetType(fechaSalidaReporte.TipoNet)) : null
             };
 
+            
 
             return View(operacionViewModel);
         }
@@ -158,23 +215,51 @@ namespace InternetReports.Areas.Reportes.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                //Observaciones
                 if (operacionViewModel.ObservacionesId > 0)
                 {
-                    ObservacionReporte observacionItem = ReportesDb.ObservacionesReportes.Find(operacionViewModel.ObservacionesId);
-                    observacionItem.Observacion = operacionViewModel.Observaciones;
+                    EdicionReporte observacionItem = ReportesDb.ObservacionesReportes.Find(operacionViewModel.ObservacionesId);
+                    observacionItem.Valor = operacionViewModel.Observaciones;
                 }
-                else
+                else if(!string.IsNullOrEmpty(operacionViewModel.Observaciones))
                 {
-                    ObservacionReporte observacionItem = new ObservacionReporte()
+                    EdicionReporte observacionItem = new EdicionReporte()
                     {
-                        Observacion = operacionViewModel.Observaciones,
+                        Valor = operacionViewModel.Observaciones,
                         IdentificadorRegistro = operacionViewModel.Referencia,
                         ReporteId = "Operaciones",
-                        ClienteId = operacionViewModel.ClienteId
+                        ClienteId = operacionViewModel.ClienteId,
+                        Campo = "Observaciones",
+                        TipoNet = typeof(String).ToString(),
+                        TipoSql = System.Data.SqlDbType.VarChar.ToString()
                     };
 
                     ReportesDb.ObservacionesReportes.Add(observacionItem);
                 }
+
+                //Fecha de salida
+                if (operacionViewModel.FechaSalidaId > 0)
+                {
+                    EdicionReporte observacionItem = ReportesDb.ObservacionesReportes.Find(operacionViewModel.FechaSalidaId);
+                    observacionItem.Valor = operacionViewModel.FechaSalida.ToString();
+                }
+                else if(operacionViewModel.FechaSalida.HasValue)
+                {
+                    EdicionReporte observacionItem = new EdicionReporte()
+                    {
+                        Valor = operacionViewModel.FechaSalida.ToString(),
+                        IdentificadorRegistro = operacionViewModel.Referencia,
+                        ReporteId = "Operaciones",
+                        ClienteId = operacionViewModel.ClienteId,
+                        Campo = "FechaSalida",
+                        TipoNet = typeof(DateTime).ToString(),
+                        TipoSql = System.Data.SqlDbType.DateTime2.ToString()
+                    };
+
+                    ReportesDb.ObservacionesReportes.Add(observacionItem);
+                }
+
                 await ReportesDb.SaveChangesAsync();
             }
             else

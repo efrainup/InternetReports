@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reports.DAL
+namespace Hinojosa.Common.DataAccessLayer
 {
     public abstract class AReportSource<T>
     {

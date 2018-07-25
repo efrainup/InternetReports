@@ -12,7 +12,7 @@
 <body>
     <header class="full-header header-3">
 
-        <div class="navbar style-1 affix navbar-fixed-top clearfix">
+        <div class="navbar style-1 affix navbar-fixed-top clearfix" style="height:auto;">
             <div class="container clearfix">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -28,12 +28,23 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav color-nav navbar-left">
                         <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle navbar-link">Reportes</a>
-                            <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Operaciones", "Index", "Operaciones", new { area = "Reportes" }, new { @class = "nav-link" })</li>
-                            </ul>
-                        </li>
+                        
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle navbar-link">Reportes</a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Operaciones", "Index", "Operaciones", new { area = "Reportes" }, new { @class = "nav-link" })</li>
+                                </ul>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <li>
+                                @Html.ActionLink("Registrar", "Registrar", "Account", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
                     </ul>
                     <div class="clearfix col-sm-12" style="background-color:#fff">
                         @Html.Partial("_LoginPartial")
@@ -45,7 +56,7 @@
         </div>
         
     </header>
-    <div class="container body-content">
+    <div class="container-fluid body-content">
         @RenderBody()
         <hr />
         <footer class="col-sm-12 col-md-12">
@@ -54,6 +65,7 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

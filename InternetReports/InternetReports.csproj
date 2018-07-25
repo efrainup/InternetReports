@@ -254,6 +254,10 @@
     <Compile Include="ReportesDbContextMigrations\201807172139401_AgregarObservacionesReportes.Designer.cs">
       <DependentUpon>201807172139401_AgregarObservacionesReportes.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportesDbContextMigrations\201807201832319_AgregaEdicionReportes.cs" />
+    <Compile Include="ReportesDbContextMigrations\201807201832319_AgregaEdicionReportes.Designer.cs">
+      <DependentUpon>201807201832319_AgregaEdicionReportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportesDbContextMigrations\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -341,6 +345,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hinojosa.Common.DataAcessLayer\Hinojosa.Common.DataAccessLayer.csproj">
+      <Project>{53c3f609-3ed0-46d5-81b4-56f18adf35ab}</Project>
+      <Name>Hinojosa.Common.DataAccessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Reports.Models\Reports.Models.csproj">
       <Project>{e487d578-d56a-412c-9dd7-69372aa53683}</Project>
       <Name>Reports.Models</Name>
@@ -365,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportesDbContextMigrations\201807172139401_AgregarObservacionesReportes.resx">
       <DependentUpon>201807172139401_AgregarObservacionesReportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesDbContextMigrations\201807201832319_AgregaEdicionReportes.resx">
+      <DependentUpon>201807201832319_AgregaEdicionReportes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

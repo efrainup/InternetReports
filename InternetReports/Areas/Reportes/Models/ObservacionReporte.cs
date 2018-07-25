@@ -7,14 +7,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InternetReports.Areas.Reportes.Models
 {
-    [Table("ObservacionesReportes")]
-    public class ObservacionReporte
+    [Table("EdicionesReportes")]
+    public class EdicionReporte
     {
         [Key]
-        public int IdAtributo { get; set; }
+        public int EdicionId { get; set; }
         public string ReporteId { get; set; }
         public string ClienteId { get; set; }
         public string IdentificadorRegistro { get; set; }
-        public string Observacion { get; set; }
+        public string Valor { get; set; }
+        public string Campo { get; set; }
+        public string TipoNet { get; set; }
+        public string TipoSql { get; set; }
+
     }
 }

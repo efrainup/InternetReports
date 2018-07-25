@@ -14,6 +14,6 @@ namespace InternetReports
 
         }
 
-        public DbSet<ObservacionReporte> ObservacionesReportes { get; set; }
+        public DbSet<EdicionReporte> ObservacionesReportes { get; set; }
     }
 }
