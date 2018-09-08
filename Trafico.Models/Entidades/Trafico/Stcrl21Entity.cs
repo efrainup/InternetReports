@@ -9,7 +9,7 @@ namespace RECO.Models.Trafico
     /// <summary>
     /// Entidad de las operaciones del sistema de tráfico. Hace referencia a Reco/Trafico/data/stctrl21
     /// </summary>
-    public class Stcrl21Entity
+    public class Stctrl21Entity
     {
         /// <summary>
         /// Número de referencia para el control interno.
@@ -19,5 +19,9 @@ namespace RECO.Models.Trafico
         /// Fecha de apertura del expediente
         /// </summary>
         public DateTime? Frecep21 { get; set; }
+        /// <summary>
+        /// Clave del cliente
+        /// </summary>
+        public string Cvecli21 { get; set; }
     }
 }

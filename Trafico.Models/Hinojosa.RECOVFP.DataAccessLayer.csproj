@@ -48,24 +48,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidades\SAAI\SSPII137.cs" />
     <Compile Include="Entidades\SORF\Srsoli01.cs" />
     <Compile Include="Entidades\Trafico\Stcrl21Entity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entidades\Trafico\Stprev26.cs" />
     <Compile Include="Repositorios\AReportSource.cs" />
+    <Compile Include="Repositorios\SAAI\IPartesDos.cs" />
     <Compile Include="Repositorios\SORF\ServiciosRepositorio.cs" />
     <Compile Include="Repositorios\Trafico\IReconocimientoDePreviosRepositorio.cs" />
+    <Compile Include="Repositorios\Trafico\IReferenciasTraficoRepositorio.cs" />
     <Compile Include="Repositorios\Trafico\ReconocimientoDePreviosRepositorioODBC.cs" />
+    <Compile Include="Repositorios\Trafico\ReferenciasTraficoRepositorioVFPInterop.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entidades\SAAI\" />
-    <Folder Include="Repositorios\SAAI\" />
+    <Folder Include="Util\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="recovfpinteroplibraries">
+      <Guid>{AA55958A-5953-4580-AC31-DB5EEC0A4BB1}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

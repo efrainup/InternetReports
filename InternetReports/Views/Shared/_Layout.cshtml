@@ -28,13 +28,19 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav color-nav navbar-left">
                         <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        
+
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li>
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle navbar-link">Reportes</a>
                                 <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("Operaciones", "Index", "Operaciones", new { area = "Reportes" }, new { @class = "nav-link" })</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle navbar-link">Operacion</a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Solicitudes de descargas masivas", "Index", "SolicitudesDescargasMasivas", new { area = "Operacion" }, new { @class = "nav-link" })</li>
                                 </ul>
                             </li>
                         }

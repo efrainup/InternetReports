@@ -1,0 +1,95 @@
+﻿@model IEnumerable<InternetReports.Areas.Operacion.Models.SolicitudDescargaMasiva>
+
+@{
+    ViewBag.Title = "Solicitudes de descargas masivas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Solicitudes de descargas masivas</h2>
+
+<p>
+    @Html.ActionLink("Nueva solicitud", "NuevaSolicitud")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.NombreSolicitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaSolicitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaProcesado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaUltimaDescarga)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaVigencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.UrlDescarga)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Procesado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UsuarioSolicito)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IdCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreSolicitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaSolicitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaProcesado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaUltimaDescarga)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaVigencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.UrlDescarga)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Procesado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsuarioSolicito)
+        </td>
+        <td>
+            @if (item.Procesado)
+            {
+                Html.ActionLink("Descargar", "Descargar", new { folioDescarga = item.NombreSolicitud });
+            }
+        </td>
+    </tr>
+}
+
+</table>

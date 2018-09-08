@@ -33,5 +33,20 @@ namespace Hinojosa.Common.DataAccessLayer.Repositorios
             }
 
         }
+
+        public async Task<CatCliente> RecuperarPorId(string idCliente)
+        {
+            string sqlQuery = "SELECT * FROM Cat_Clientes WITH(NOLOCK) where id_cli='" +idCliente+"'" ;
+            DbCommand command = database.GetSqlStringCommand(sqlQuery);
+
+            using (DbConnection conexion = database.CreateConnection())
+            {
+                await conexion.OpenAsync();
+                command.Connection = conexion;
+
+                var reader = await command.ExecuteReaderAsync();
+                return Fill(reader).FirstOrDefault();
+            }
+        }
     }
 }

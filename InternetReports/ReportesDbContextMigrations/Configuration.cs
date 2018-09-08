@@ -5,7 +5,7 @@ namespace InternetReports.ReportesDbContextMigrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<InternetReports.ReportesDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<InternetReports.SitioClientesHinojosaDbContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace InternetReports.ReportesDbContextMigrations
             MigrationsDirectory = @"ReportesDbContextMigrations";
         }
 
-        protected override void Seed(InternetReports.ReportesDbContext context)
+        protected override void Seed(InternetReports.SitioClientesHinojosaDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -15,6 +15,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hinojosa.RECOVFP.DataAccess
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hinojosa.Common.DataAccessLayer", "Hinojosa.Common.DataAcessLayer\Hinojosa.Common.DataAccessLayer.csproj", "{53C3F609-3ED0-46D5-81B4-56F18ADF35AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DescargaLaserfichePrueba", "DescargaLaserfichePrueba\DescargaLaserfichePrueba.csproj", "{D4220445-B066-4272-8D61-7AFC3CAF1611}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hinojosa.RepositorioDocumentos", "Hinojosa.RepositorioDocumentos\Hinojosa.RepositorioDocumentos.csproj", "{0C294B8C-935E-4C8C-892E-46C56A7B68B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hinojosa.Test.RepositorioDocumentos", "Hinojosa.Test.RepositorioDocumentos\Hinojosa.Test.RepositorioDocumentos.csproj", "{D37E695C-8F01-4D4C-B677-9B472957F4DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{1073ECE9-5AB2-4698-9B78-D723531184DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DescargaExpedientesWindowsService", "DescargaExpedientesWindowsService\DescargaExpedientesWindowsService.csproj", "{CF7EFD5D-7440-4FF6-8DE0-F9CCF556A540}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,12 +55,32 @@ Global
 		{53C3F609-3ED0-46D5-81B4-56F18ADF35AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53C3F609-3ED0-46D5-81B4-56F18ADF35AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53C3F609-3ED0-46D5-81B4-56F18ADF35AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4220445-B066-4272-8D61-7AFC3CAF1611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4220445-B066-4272-8D61-7AFC3CAF1611}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4220445-B066-4272-8D61-7AFC3CAF1611}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4220445-B066-4272-8D61-7AFC3CAF1611}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C294B8C-935E-4C8C-892E-46C56A7B68B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C294B8C-935E-4C8C-892E-46C56A7B68B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C294B8C-935E-4C8C-892E-46C56A7B68B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C294B8C-935E-4C8C-892E-46C56A7B68B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D37E695C-8F01-4D4C-B677-9B472957F4DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D37E695C-8F01-4D4C-B677-9B472957F4DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D37E695C-8F01-4D4C-B677-9B472957F4DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D37E695C-8F01-4D4C-B677-9B472957F4DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1073ECE9-5AB2-4698-9B78-D723531184DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1073ECE9-5AB2-4698-9B78-D723531184DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1073ECE9-5AB2-4698-9B78-D723531184DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1073ECE9-5AB2-4698-9B78-D723531184DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF7EFD5D-7440-4FF6-8DE0-F9CCF556A540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF7EFD5D-7440-4FF6-8DE0-F9CCF556A540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF7EFD5D-7440-4FF6-8DE0-F9CCF556A540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF7EFD5D-7440-4FF6-8DE0-F9CCF556A540}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
 		SolutionGuid = {DF8F963D-EBC4-497F-B735-7AFB9D592631}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
 	EndGlobalSection
 EndGlobal

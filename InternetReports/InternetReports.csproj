@@ -194,6 +194,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Operacion\Controllers\ExpedientesController.cs" />
+    <Compile Include="Areas\Operacion\Controllers\SolicitudesDescargasMasivasController.cs" />
+    <Compile Include="Areas\Operacion\Models\Expediente.cs" />
+    <Compile Include="Areas\Operacion\Models\SolicitudDescargaMasiva.cs" />
+    <Compile Include="Areas\Operacion\Models\SolicitudDescargaMasivaViewModel.cs" />
+    <Compile Include="Areas\Operacion\OperacionAreaRegistration.cs" />
+    <Compile Include="Areas\Operacion\OperacionesDbContext.cs" />
     <Compile Include="Areas\Reportes\Controllers\OperacionesController.cs" />
     <Compile Include="Areas\Reportes\Models\ObservacionReporte.cs" />
     <Compile Include="Areas\Reportes\Models\Clasificaciones.cs" />
@@ -249,7 +256,7 @@
       <DependentUpon>ARCHIVOS_ALT.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReportesDbContext.cs" />
+    <Compile Include="App_Data\SitioClientesHinojosaDbContext.cs" />
     <Compile Include="ReportesDbContextMigrations\201807172139401_AgregarObservacionesReportes.cs" />
     <Compile Include="ReportesDbContextMigrations\201807172139401_AgregarObservacionesReportes.Designer.cs">
       <DependentUpon>201807172139401_AgregarObservacionesReportes.cs</DependentUpon>
@@ -257,6 +264,26 @@
     <Compile Include="ReportesDbContextMigrations\201807201832319_AgregaEdicionReportes.cs" />
     <Compile Include="ReportesDbContextMigrations\201807201832319_AgregaEdicionReportes.Designer.cs">
       <DependentUpon>201807201832319_AgregaEdicionReportes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesDbContextMigrations\201808092120140_AgregarSolicitudDescargasMasivas.cs" />
+    <Compile Include="ReportesDbContextMigrations\201808092120140_AgregarSolicitudDescargasMasivas.Designer.cs">
+      <DependentUpon>201808092120140_AgregarSolicitudDescargasMasivas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesDbContextMigrations\201808092153318_AgregaPropiedadRutaEnSolicitudDescargasMasivas.cs" />
+    <Compile Include="ReportesDbContextMigrations\201808092153318_AgregaPropiedadRutaEnSolicitudDescargasMasivas.Designer.cs">
+      <DependentUpon>201808092153318_AgregaPropiedadRutaEnSolicitudDescargasMasivas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesDbContextMigrations\201809081501424_Modificar Solicitud Descargas Masivas.cs" />
+    <Compile Include="ReportesDbContextMigrations\201809081501424_Modificar Solicitud Descargas Masivas.Designer.cs">
+      <DependentUpon>201809081501424_Modificar Solicitud Descargas Masivas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesDbContextMigrations\201809081545178_Modificar Solicitud Descargas Notificaciones.cs" />
+    <Compile Include="ReportesDbContextMigrations\201809081545178_Modificar Solicitud Descargas Notificaciones.Designer.cs">
+      <DependentUpon>201809081545178_Modificar Solicitud Descargas Notificaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesDbContextMigrations\201809081709332_ModificarSolicitudDescargaMasiva_AgregrIdentity.cs" />
+    <Compile Include="ReportesDbContextMigrations\201809081709332_ModificarSolicitudDescargaMasiva_AgregrIdentity.Designer.cs">
+      <DependentUpon>201809081709332_ModificarSolicitudDescargaMasiva_AgregrIdentity.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportesDbContextMigrations\Configuration.cs" />
   </ItemGroup>
@@ -293,6 +320,9 @@
     <Content Include="Models\EF.Reverse.POCO.ttinclude" />
     <Content Include="Areas\Reportes\Views\Operaciones\Editar.cshtml" />
     <Content Include="Areas\Reportes\Views\Operaciones\Cerrar.cshtml" />
+    <Content Include="Areas\Operacion\Views\web.config" />
+    <Content Include="Areas\Operacion\Views\SolicitudesDescargasMasivas\Index.cshtml" />
+    <Content Include="Areas\Operacion\Views\SolicitudesDescargasMasivas\NuevaSolicitud.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Readme.md" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -357,8 +387,14 @@
       <Project>{870ced31-ce01-46df-8c9f-afb88351a891}</Project>
       <Name>Reports.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Trafico.Models\Hinojosa.RECOVFP.DataAccessLayer.csproj">
+      <Project>{e9a0b1fb-3844-43c0-8f40-7f85676fd7d3}</Project>
+      <Name>Hinojosa.RECOVFP.DataAccessLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Operacion\Views\Expedientes\" />
+    <Folder Include="Areas\Operacion\Views\Shared\" />
     <Folder Include="d\" />
   </ItemGroup>
   <ItemGroup>
@@ -376,6 +412,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportesDbContextMigrations\201807201832319_AgregaEdicionReportes.resx">
       <DependentUpon>201807201832319_AgregaEdicionReportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesDbContextMigrations\201808092120140_AgregarSolicitudDescargasMasivas.resx">
+      <DependentUpon>201808092120140_AgregarSolicitudDescargasMasivas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesDbContextMigrations\201808092153318_AgregaPropiedadRutaEnSolicitudDescargasMasivas.resx">
+      <DependentUpon>201808092153318_AgregaPropiedadRutaEnSolicitudDescargasMasivas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesDbContextMigrations\201809081501424_Modificar Solicitud Descargas Masivas.resx">
+      <DependentUpon>201809081501424_Modificar Solicitud Descargas Masivas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesDbContextMigrations\201809081545178_Modificar Solicitud Descargas Notificaciones.resx">
+      <DependentUpon>201809081545178_Modificar Solicitud Descargas Notificaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesDbContextMigrations\201809081709332_ModificarSolicitudDescargaMasiva_AgregrIdentity.resx">
+      <DependentUpon>201809081709332_ModificarSolicitudDescargaMasiva_AgregrIdentity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

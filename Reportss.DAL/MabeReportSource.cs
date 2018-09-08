@@ -45,7 +45,9 @@ namespace Reports.DAL
         protected async Task<IEnumerable<Models.Partida>> CreateGetReportQueryAsync()
         {
             //Obtenemos las referencias del sistema de Trafico que se van a buscar
-            var referenciasTrafico = await GetDataFromSAAI();
+            //var referenciasTrafico = await GetDataFromSAAI();
+            IReferenciasTraficoRepositorio repositorioTrafico = new ReferenciasTraficoRepositorioVFPInterop();
+            var referenciasTrafico = await repositorioTrafico.RecuperarPorFechaAlta(this.inicio,this.final);
 
             //Creamos un parámetro para la búsqueda
             string referenciasSeparadasPorComa = "";
@@ -176,7 +178,7 @@ namespace Reports.DAL
         /// Obtiene la información de la tabla stctrl21
         /// </summary>
         /// <returns></returns>
-        protected async Task<IEnumerable<Stcrl21Entity>> GetDataFromSAAI()
+        protected async Task<IEnumerable<Stctrl21Entity>> GetDataFromSAAI()
         {
             DateTime inicio = this.inicio;
             DateTime fin = this.final;
@@ -192,7 +194,7 @@ namespace Reports.DAL
                 await dbCommand.Connection.OpenAsync();
                 DbDataReader dataReader = await dbCommand.ExecuteReaderAsync();
 
-                return Fill<Stcrl21Entity>(dataReader);
+                return Fill<Stctrl21Entity>(dataReader);
             }
         }
 

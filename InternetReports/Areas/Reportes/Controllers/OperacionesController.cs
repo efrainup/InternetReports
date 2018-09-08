@@ -22,7 +22,7 @@ namespace InternetReports.Areas.Reportes.Controllers
         private string _clienteId;
         private string _nombreCliente;
         protected AppUserManager _userManager;
-        protected ReportesDbContext ReportesDb = new ReportesDbContext();
+        protected SitioClientesHinojosaDbContext ReportesDb = new SitioClientesHinojosaDbContext();
 
         //Este contexto de EnttyFramework se declara como estático para aprovechar el uso del cache de objetos de entity framwork
         private static ARCHIVOS_ALT _catalogos;
@@ -96,18 +96,16 @@ namespace InternetReports.Areas.Reportes.Controllers
         public async Task<ActionResult> Index(DateTime? startDate = null, DateTime? endDate=null, string clienteId = null)
         {
             //Por default se muestra la fecha anterior
-            startDate = startDate ?? DateTime.Now.AddDays(-1).Date;
-            endDate = endDate ?? DateTime.Now.AddDays(-1).Date;
+            //startDate = startDate ?? DateTime.Now.AddDays(-1).Date;
+            //endDate = endDate ?? DateTime.Now.AddDays(-1).Date;
 
             //En caso de que el usuario no sea administrador se establece el clienteId con el id del cliente logueado
             if (User.IsInRole("Administrador"))
             {
                 clienteId = clienteId ?? "0";
                 int idClienteNumero = Convert.ToInt32(clienteId);
-                ViewBag.NombreCliente = (await Catalogos.Recuperar())
-                    .Where(w => w.IdCli == idClienteNumero)
-                    .Select(s => s.Nom1)
-                    .FirstOrDefault();
+                ViewBag.NombreCliente = await Catalogos.RecuperarPorId(idClienteNumero.ToString());
+                    
             }
             else
             {
@@ -121,67 +119,73 @@ namespace InternetReports.Areas.Reportes.Controllers
             {
                 //Catalogos.Configuration.AutoDetectChangesEnabled = false;
                 
-                ViewBag.CatalogoClientes = new SelectList((await Catalogos.Recuperar()).Select(s => new {IdCli = s.IdCli, Nom1 = s.Nom1 }).ToList(),"IdCli","Nom1");
+                ViewBag.CatalogoClientes = new SelectList((await Catalogos.Recuperar()).Select(s => new {IdCli = s.IdCli, Nom1 = s.Nom1 }).OrderBy(o => o.Nom1).ToList(),"IdCli","Nom1");
             }
 
-            //Busqueda de resultados
-            var Resultados = new MabeReportSource(clienteId, startDate.Value, endDate.Value);
-            var resultados = await Resultados.GetReportAsync();
+            IEnumerable<Partida> resultados = new List<Partida>();
 
-            var referencias = resultados.Select(s => "'" + s.Referencia + "'");
-            string referenciascadena = "";
-            string consultaObservaciones = "SELECT * FROM EdicionesReportes WHERE ReporteId = 'Operaciones' AND Campo='Observaciones' AND ClienteId = @ClienteId ";
-            string consultaFechasDeSalidaEditadas = "SELECT * FROM EdicionesReportes WHERE ReporteId = 'Operaciones' AND Campo='FechaSalida' AND ClienteId = @ClienteId ";
-
-            if (referencias.Count() > 0)
+            if (startDate != null && endDate != null)
             {
-                referenciascadena = referencias.Aggregate((previo, siguiente) => previo + "," + siguiente);
-                
+                //Busqueda de resultados
+                var Resultados = new MabeReportSource(clienteId, startDate.Value, endDate.Value);
+                resultados = await Resultados.GetReportAsync();
 
-                //Se agregan las observaciones
-                consultaObservaciones += " AND IdentificadorRegistro IN("+referenciascadena+")";
+                var referencias = resultados.Select(s => "'" + s.Referencia + "'");
+                string referenciascadena = "";
+                string consultaObservaciones = "SELECT * FROM EdicionesReportes WHERE ReporteId = 'Operaciones' AND Campo='Observaciones' AND ClienteId = @ClienteId ";
+                string consultaFechasDeSalidaEditadas = "SELECT * FROM EdicionesReportes WHERE ReporteId = 'Operaciones' AND Campo='FechaSalida' AND ClienteId = @ClienteId ";
 
-                var observaciones = ReportesDb.ObservacionesReportes//.Where(o => o.ClienteId == clienteId && referencias.Any(a=> a == o.IdentificadorRegistro) )
-                    .SqlQuery(consultaObservaciones, new SqlParameter("@ClienteId", clienteId))
-                    .ToArray();
-
-                if (observaciones != null && observaciones.Count() > 0)
+                if (referencias.Count() > 0)
                 {
-                    resultados = resultados.GroupJoin(observaciones, itemReporte => itemReporte.Referencia, itemObservaciones => itemObservaciones.IdentificadorRegistro, (itemReporte, observacionesList) =>
+                    referenciascadena = referencias.Aggregate((previo, siguiente) => previo + "," + siguiente);
+
+
+                    //Se agregan las observaciones
+                    consultaObservaciones += " AND IdentificadorRegistro IN(" + referenciascadena + ")";
+
+                    var observaciones = ReportesDb.ObservacionesReportes//.Where(o => o.ClienteId == clienteId && referencias.Any(a=> a == o.IdentificadorRegistro) )
+                        .SqlQuery(consultaObservaciones, new SqlParameter("@ClienteId", clienteId))
+                        .ToArray();
+
+                    if (observaciones != null && observaciones.Count() > 0)
                     {
-                        var observacion = observacionesList.FirstOrDefault();
-                        if (observacion != null)
+                        resultados = resultados.GroupJoin(observaciones, itemReporte => itemReporte.Referencia, itemObservaciones => itemObservaciones.IdentificadorRegistro, (itemReporte, observacionesList) =>
                         {
-                            itemReporte.Observaciones = observacion.Valor;
-                        }
+                            var observacion = observacionesList.FirstOrDefault();
+                            if (observacion != null)
+                            {
+                                itemReporte.Observaciones = observacion.Valor;
+                            }
 
-                        return itemReporte;
-                    });
-                }
+                            return itemReporte;
+                        });
+                    }
 
-                //Se agregan las fechas de salida editadas
-                consultaFechasDeSalidaEditadas += " AND IdentificadorRegistro IN(" + referenciascadena + ")";
+                    //Se agregan las fechas de salida editadas
+                    consultaFechasDeSalidaEditadas += " AND IdentificadorRegistro IN(" + referenciascadena + ")";
 
-                var fechasDeSalidas = ReportesDb.ObservacionesReportes//.Where(o => o.ClienteId == clienteId && referencias.Any(a=> a == o.IdentificadorRegistro) )
-                    .SqlQuery(consultaFechasDeSalidaEditadas, new SqlParameter("@ClienteId", clienteId))
-                    .ToArray();
+                    var fechasDeSalidas = ReportesDb.ObservacionesReportes//.Where(o => o.ClienteId == clienteId && referencias.Any(a=> a == o.IdentificadorRegistro) )
+                        .SqlQuery(consultaFechasDeSalidaEditadas, new SqlParameter("@ClienteId", clienteId))
+                        .ToArray();
 
-                if (fechasDeSalidas != null && fechasDeSalidas.Count() > 0)
-                {
-                    resultados = resultados.GroupJoin(fechasDeSalidas, itemReporte => itemReporte.Referencia, itemFechaDeSalidaEditada => itemFechaDeSalidaEditada.IdentificadorRegistro, (itemReporte, fechaDeSalidaList) =>
+                    if (fechasDeSalidas != null && fechasDeSalidas.Count() > 0)
                     {
-                        var fechaSalidaItem = fechaDeSalidaList.FirstOrDefault();
-                        if (fechaSalidaItem != null)
+                        resultados = resultados.GroupJoin(fechasDeSalidas, itemReporte => itemReporte.Referencia, itemFechaDeSalidaEditada => itemFechaDeSalidaEditada.IdentificadorRegistro, (itemReporte, fechaDeSalidaList) =>
                         {
-                            itemReporte.FechaSalida = (DateTime?)Convert.ChangeType(fechaSalidaItem.Valor,Type.GetType(fechaSalidaItem.TipoNet));
-                        }
+                            var fechaSalidaItem = fechaDeSalidaList.FirstOrDefault();
+                            if (fechaSalidaItem != null)
+                            {
+                                itemReporte.FechaSalida = (DateTime?)Convert.ChangeType(fechaSalidaItem.Valor, Type.GetType(fechaSalidaItem.TipoNet));
+                            }
 
-                        return itemReporte;
-                    });
+                            return itemReporte;
+                        });
+                    }
                 }
             }
-
+            
             return View(resultados);
+            
         }
 
 

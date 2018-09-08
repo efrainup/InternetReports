@@ -7,13 +7,14 @@ using System.Web;
 
 namespace InternetReports
 {
-    public class ReportesDbContext : DbContext
+    public partial class SitioClientesHinojosaDbContext : DbContext
     {
-        public ReportesDbContext() : base("ReportesDB")
+        public SitioClientesHinojosaDbContext() : base("ReportesDB")
         {
 
         }
 
         public DbSet<EdicionReporte> ObservacionesReportes { get; set; }
+
     }
 }

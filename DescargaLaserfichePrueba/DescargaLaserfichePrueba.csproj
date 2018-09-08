@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D4220445-B066-4272-8D61-7AFC3CAF1611}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DescargaLaserfichePrueba</RootNamespace>
+    <AssemblyName>DescargaLaserfichePrueba</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.DocumentProcessor100, Version=10.0.0.0, Culture=neutral, PublicKeyToken=607dd73ee2bd1c00, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_32\Interop.DocumentProcessor100\v4.0_10.0.0.0__607dd73ee2bd1c00\Interop.DocumentProcessor100.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.LFSO100Lib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=607dd73ee2bd1c00, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_32\Interop.LFSO100Lib\v4.0_10.0.0.0__607dd73ee2bd1c00\Interop.LFSO100Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.LFSO90Lib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=607dd73ee2bd1c00, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_32\Interop.LFSO90Lib\9.0.0.0__607dd73ee2bd1c00\Interop.LFSO90Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="Laserfiche.HttpClient, Version=10.0.0.0, Culture=neutral, PublicKeyToken=3f98b3eaee6c16a6, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_32\Laserfiche.HttpClient\v4.0_10.0.0.0__3f98b3eaee6c16a6\Laserfiche.HttpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Laserfiche.RepositoryAccess, Version=10.0.0.0, Culture=neutral, PublicKeyToken=3f98b3eaee6c16a6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\Laserfiche.RepositoryAccess\v4.0_10.0.0.0__3f98b3eaee6c16a6\Laserfiche.RepositoryAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Laserfiche.Workflow.Activities.83">
+      <HintPath>..\..\..\..\..\..\Program Files\Laserfiche\Laserfiche Workflow 10\Laserfiche.Workflow.Activities.83.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfExporter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=3f98b3eaee6c16a6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\PdfExporter\v4.0_10.0.0.0__3f98b3eaee6c16a6\PdfExporter.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="LFSO80Lib">
+      <Guid>{DC37D6AD-1489-45B9-8F1E-162CF65E1FB2}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hinojosa.RepositorioDocumentos\Hinojosa.RepositorioDocumentos.csproj">
+      <Project>{0c294b8c-935e-4c8c-892e-46c56a7b68b0}</Project>
+      <Name>Hinojosa.RepositorioDocumentos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
