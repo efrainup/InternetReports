@@ -18,7 +18,7 @@ namespace InternetReports.Models
     public interface IARCHIVOS_ALT : System.IDisposable
     {
         System.Data.Entity.DbSet<CatCliente> CatClientes { get; set; } // cat_clientes
-        System.Data.Entity.DbSet<CatClientesDir> CatClientesDirs { get; set; } // cat_clientes_dir
+        System.Data.Entity.DbSet<PedimentosSaaiSirView> PedimentosSaaiSirViews { get; set; } // SQ_VT_PedimentosSaaiSir
 
         int SaveChanges();
         System.Threading.Tasks.Task<int> SaveChangesAsync();
@@ -32,6 +32,12 @@ namespace InternetReports.Models
         System.Data.Entity.DbSet Set(System.Type entityType);
         System.Data.Entity.DbSet<TEntity> Set<TEntity>() where TEntity : class;
         string ToString();
+
+        // Stored Procedures
+        System.Collections.Generic.List<UspRecuperarComplementosDePagoPorClienteReturnModel> UspRecuperarComplementosDePagoPorCliente(int? idCliente, System.DateTime? fechaInicio, System.DateTime? fechaFin, int? idObjeto, string serie, string folio);
+        System.Collections.Generic.List<UspRecuperarComplementosDePagoPorClienteReturnModel> UspRecuperarComplementosDePagoPorCliente(int? idCliente, System.DateTime? fechaInicio, System.DateTime? fechaFin, int? idObjeto, string serie, string folio, out int procResult);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<UspRecuperarComplementosDePagoPorClienteReturnModel>> UspRecuperarComplementosDePagoPorClienteAsync(int? idCliente, System.DateTime? fechaInicio, System.DateTime? fechaFin, int? idObjeto, string serie, string folio);
+
     }
 
 }

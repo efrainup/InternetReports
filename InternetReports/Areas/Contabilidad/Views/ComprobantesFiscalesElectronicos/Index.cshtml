@@ -1,0 +1,55 @@
+﻿@model IEnumerable<InternetReports.Models.UspRecuperarComplementosDePagoPorClienteReturnModel>
+@{
+    ViewBag.Title = "Busqueda de comprobantes fiscales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <div class="row">
+        @using (Html.BeginForm("Index", "ComprobantesFiscalesElectronicos", FormMethod.Get, new { }))
+        {
+            <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                <label for="fecha_inicio">Fecha de inicio:</label>
+                @Html.TextBox("fecha_inicio", null, new { type = "date", @class = "form-control" })
+            </div>
+            <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                <label for="fecha_fin">Fecha de fin:</label>
+                @Html.TextBox("fecha_fin", null, new { type = "date", @class = "form-control" })
+            </div>
+            <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                <label for="fecha_fin">Cuenta de gastos:</label>
+                @Html.TextBox("cuenta_de_gastos", null, new { @class = "form-control" })
+            </div>
+
+            <button class="btn-primary">Buscar</button>
+        }
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-block well">
+                        <div class="box">
+                            <a href="@Url.Action("Descargar",new {id=item.IdObjeto })">
+                                <svg viewBox="0 0 65 65" width="65" height="65" style="display:inline">
+                                    <use xlink:href="~/img/svg-filestypes/zip.svg#Layer_1"></use>
+                                </svg>
+                                <span>
+                                    @item.Archivo
+                                </span>
+                            </a>
+                            @*Html.ActionLink(item.Archivo, "Descargar",new {id=item.IdObjeto })*@
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

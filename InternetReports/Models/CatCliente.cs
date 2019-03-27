@@ -98,7 +98,7 @@ namespace InternetReports.Models
         ///<summary>
         /// numero exterior
         ///</summary>
-        public string NumExt { get; set; } // num_ext (length: 30)
+        public string NumExt { get; set; } // num_ext (length: 120)
 
         ///<summary>
         /// Colonia
@@ -108,7 +108,7 @@ namespace InternetReports.Models
         ///<summary>
         /// delegación
         ///</summary>
-        public string Deleg { get; set; } // deleg (length: 50)
+        public string Deleg { get; set; } // deleg (length: 125)
         public string Curp { get; set; } // curp (length: 40)
         public string Calles { get; set; } // calles (length: 40)
 
@@ -255,13 +255,11 @@ namespace InternetReports.Models
         public bool FluEfe { get; set; } // flu_efe
         public bool CTimbAnt { get; set; } // c_timb_ant
         public int IdTipHos { get; set; } // id_tip_hos
-
-        // Reverse navigation
-
-        /// <summary>
-        /// Child CatClientesDirs where [cat_clientes_dir].[id_cli] point to this entity (FK_cat_clientes_dir_cat_clientes)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<CatClientesDir> CatClientesDirs { get; set; } // cat_clientes_dir.FK_cat_clientes_dir_cat_clientes
+        public string ClaveStp { get; set; } // claveSTP (length: 5)
+        public int ChkStpMultisucursal { get; set; } // chkStpMultisucursal
+        public byte CGtaObl { get; set; } // c_gta_obl
+        public double PtgGtaObl { get; set; } // ptg_gta_obl
+        public int DepAut { get; set; } // dep_aut
 
         public CatCliente()
         {
@@ -378,7 +376,11 @@ namespace InternetReports.Models
             FluEfe = false;
             CTimbAnt = false;
             IdTipHos = 0;
-            CatClientesDirs = new System.Collections.Generic.List<CatClientesDir>();
+            ClaveStp = "";
+            ChkStpMultisucursal = 2;
+            CGtaObl = 0;
+            PtgGtaObl = 0;
+            DepAut = 0;
         }
     }
 

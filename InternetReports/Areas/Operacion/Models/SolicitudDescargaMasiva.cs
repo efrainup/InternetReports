@@ -8,6 +8,7 @@ using System.Web;
 
 namespace InternetReports.Areas.Operacion.Models
 {
+    [Serializable]
     public class SolicitudDescargaMasiva
     {
         [Key()]
@@ -29,8 +30,11 @@ namespace InternetReports.Areas.Operacion.Models
         public string UrlDescarga { get; set; }
         [DefaultValue(false)]
         public bool Procesado { get; set; }
+        [DefaultValue(false)]
+        public bool EnProceso { get; set; }
         public string UsuarioSolicito { get; set; }
         public string RutaArchivo { get; set; }
+        [Required]
         public string Notificar { get; set; }
 
     }

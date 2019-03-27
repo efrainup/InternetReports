@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,6 +18,14 @@ namespace InternetReports
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //Crear carpetas temporales
+            string rutaRelativa = ConfigurationManager.AppSettings["RutaTemporalDescargas"];
+            if (!Directory.Exists(Server.MapPath(rutaRelativa)))
+            {
+                Directory.CreateDirectory(Server.MapPath(rutaRelativa));
+            }
+
         }
     }
 }

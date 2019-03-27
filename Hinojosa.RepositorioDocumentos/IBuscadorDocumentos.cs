@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hinojosa.RepositorioDocumentos
 {
-    public interface IBuscadorDocumentos<T> where T : class
+    public interface IBuscadorDocumentos<T> : IConectable where T : class
     {
 
         /// <summary>
@@ -24,5 +24,18 @@ namespace Hinojosa.RepositorioDocumentos
         /// <param name="nombreDocumento">Nombre del documento a buscar. Acepta wildcard, por ejemplo factura 174.pdf o factura*.pdf</param>
         /// <returns></returns>
         Task<IEnumerable<T>> BuscarDocumentosExpedienteAsync(IEnumerable<string> referencias, IEnumerable<string> nombreDocumentos);
+
+        /// <summary>
+        /// Busca la carpeta contenedora
+        /// </summary>
+        /// <param name="Ruta">Ruta que se está buscando</param>
+        /// <returns></returns>
+        T BuscaCarpetaContenedora(string Ruta);
+        /// <summary>
+        /// Busca la carpeta de la referencia para la agencia aduanal
+        /// </summary>
+        /// <param name="Referencia"></param>
+        /// <returns></returns>
+        T BuscarCarpetaReferencia(string Referencia);
     }
 }

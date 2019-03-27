@@ -13,7 +13,7 @@
     <header class="full-header header-3">
 
         <div class="navbar style-1 affix navbar-fixed-top clearfix" style="height:auto;">
-            <div class="container clearfix">
+            <div class="container-fluid clearfix">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
@@ -41,6 +41,13 @@
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle navbar-link">Operacion</a>
                                 <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("Solicitudes de descargas masivas", "Index", "SolicitudesDescargasMasivas", new { area = "Operacion" }, new { @class = "nav-link" })</li>
+                                    <li>@Html.ActionLink("Descarga de expedientes", "Index", "DescargaExpedientes", new { area = "Operacion" }, new { @class = "nav-link" })</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle navbar-link">Contabilidad</a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Comprobantes Fiscales Electronicos", "Index", "ComprobantesFiscalesElectronicos", new { area = "Contabilidad" }, new { @class = "nav-link" })</li>
                                 </ul>
                             </li>
                         }
@@ -62,6 +69,7 @@
         </div>
         
     </header>
+    
     <div class="container-fluid body-content">
         @RenderBody()
         <hr />
@@ -69,7 +77,7 @@
             <p>&copy; @DateTime.Now.Year - Grupo D.A. Hinojosa</p>
         </footer>
     </div>
-
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")

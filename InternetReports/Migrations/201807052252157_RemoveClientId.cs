@@ -7,12 +7,12 @@ namespace InternetReports.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.AspNetUsers", "NombreCliente", c => c.String());
+            //AddColumn("dbo.AspNetUsers", "NombreCliente", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.AspNetUsers", "NombreCliente");
+            //DropColumn("dbo.AspNetUsers", "NombreCliente");
         }
     }
 }

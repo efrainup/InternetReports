@@ -7,15 +7,18 @@ using System.Threading.Tasks;
 using DocumentProcessor100;
 using PdfExporter;
 using System.IO.Compression;
+using System.IO;
 
 namespace Hinojosa.RepositorioDocumentos.Laserfiche
 {
     public class ExportadorDocumentosLaserfiche<T> : IExportadorDocumentos<DocumentoRepositorio> 
     {
-        protected LFConnection conexionLF = new LFConnection();
+        protected ILFConnection conexionLF = new LFConnection();
         protected LFApplication aplicacionLF;
         protected LFServer servidorLF;
-        protected LFDatabase baseDeDatosLF;
+        protected ILFDatabase baseDeDatosLF;
+
+        public object Sesion => conexionLF;
 
         public ExportadorDocumentosLaserfiche(string server = "ServerWA", string database = "DA-HINOJOSA", string user = "ADMIN", string password = "A12345678")
         {
@@ -26,34 +29,62 @@ namespace Hinojosa.RepositorioDocumentos.Laserfiche
             servidorLF = aplicacionLF.GetServerByName(server);
             baseDeDatosLF = servidorLF.GetDatabaseByName(database);
 
-            conexionLF.Create(baseDeDatosLF);
+            //conexionLF.Create(baseDeDatosLF);
         }
 
-        protected void ExportarDocumento(string ruta, LFDocument documentoLaserfiche)
+        public ExportadorDocumentosLaserfiche(ILFConnection conexionLF, ILFDatabase databaseLF)
         {
-            //Verificar el tipo de documento ya que los documentos escaneados se descargan como TIFF
-            if (documentoLaserfiche.ElectFile.IsEmpty)
-            {
-                //Descargar documento escaneado TIFF
-                var exportadorPdf = new PdfExporter.PdfExporter();
-                exportadorPdf.ExportPagesToFile(documentoLaserfiche, ruta + documentoLaserfiche.Name +".pdf");
-            }
-            else
-            {
-                try
-                {
-                    documentoLaserfiche.ElectFile.ReadStream.Open();
-                    documentoLaserfiche.ElectFile.ReadStream.Export(ruta + documentoLaserfiche.Name + "." + documentoLaserfiche.ElectFile.Extension);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    documentoLaserfiche.ElectFile.ReadStream.Close();
-                }
+            this.conexionLF = conexionLF;
+            this.baseDeDatosLF = databaseLF;
+        }
 
+        protected void ExportarDocumento(string ruta, LFDocument documentoLaserfiche, bool throwError=false)
+        {
+            if (documentoLaserfiche.Name.ToLowerInvariant().Contains("cove"))
+            {
+                return;
+            }
+            //Verificar el tipo de documento ya que los documentos escaneados se descargan como TIFF
+            //documentoLaserfiche.
+            try
+            {
+                if (documentoLaserfiche.ElectFile.IsEmpty)
+                {
+                    //Descargar documento escaneado TIFF
+                    var exportadorPdf = new PdfExporter.PdfExporter();
+                    
+                    exportadorPdf.ExportPagesToFile(documentoLaserfiche, ruta + documentoLaserfiche.Name + ".pdf");
+                }
+                else
+                {
+                    try
+                    {
+                        
+                        documentoLaserfiche.ElectFile.ReadStream.Open();
+                         documentoLaserfiche.ElectFile.ReadStream.Export(ruta + documentoLaserfiche.Name + "." + documentoLaserfiche.ElectFile.Extension);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    finally
+                    {
+                        documentoLaserfiche.ElectFile.ReadStream.Close();
+                    }
+                    
+                }
+            }
+            catch (Exception e)
+            {
+                //if (!throwError)
+                //{
+                //    conexionLF.Connect(documentoLaserfiche.Database);
+                //    ExportarDocumento(ruta, documentoLaserfiche, true);
+                //}
+                //else
+                //{
+                //    throw e;
+                //}
             }
         }
 
@@ -97,6 +128,19 @@ namespace Hinojosa.RepositorioDocumentos.Laserfiche
 
                 string directorioInterno = rutaInterna.Invoke(documento);
 
+                string[] subdirs = directorioInterno.Split('\\');
+                string rutaActual = ruta;
+                for(int i=0; i < subdirs.Length; i++)
+                {
+                    rutaActual += subdirs[i];
+                    DirectoryInfo directorio = new DirectoryInfo(rutaActual);
+                    if (!directorio.Exists)
+                    {
+                        directorio.Create();
+                    }
+                }
+
+
                 ExportarDocumento(ruta + directorioInterno, documentoLaserfiche);
             }
 
@@ -116,6 +160,19 @@ namespace Hinojosa.RepositorioDocumentos.Laserfiche
             await Task.Run(() => Exportar(documentos, ruta, zip, rutaInterna));
         }
 
+        public void Open()
+        {
+            throw new NotImplementedException();
+        }
 
+        public Task OpenAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Close()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

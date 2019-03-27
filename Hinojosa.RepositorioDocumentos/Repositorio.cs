@@ -13,6 +13,7 @@ namespace Hinojosa.RepositorioDocumentos
     public enum Repositorio
     {
         Laserfiche,
-        FileSystem
+        FileSystem,
+        SIREFile
     }
 }

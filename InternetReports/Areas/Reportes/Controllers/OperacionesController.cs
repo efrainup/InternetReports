@@ -12,17 +12,21 @@ using InternetReports.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
-using Hinojosa.Common.DataAccessLayer.Repositorios;
+using Hinojosa.Common.DataAccessLayer.Repositorios ;
+using System.Configuration;
 
 namespace InternetReports.Areas.Reportes.Controllers
 {
     [Authorize]
     public class OperacionesController : Controller
     {
+        #region Propiedades
         private string _clienteId;
         private string _nombreCliente;
         protected AppUserManager _userManager;
         protected SitioClientesHinojosaDbContext ReportesDb = new SitioClientesHinojosaDbContext();
+        public IAduanas AduanasRepositorio { get; set; }
+
 
         //Este contexto de EnttyFramework se declara como estático para aprovechar el uso del cache de objetos de entity framwork
         private static ARCHIVOS_ALT _catalogos;
@@ -88,23 +92,24 @@ namespace InternetReports.Areas.Reportes.Controllers
 
         public OperacionesController()
         {
-            
+            AduanasRepositorio = new AduanasRepositorio();
         }
+        #endregion
 
         // GET: Reportes/Operaciones
         [HttpGet]
-        public async Task<ActionResult> Index(DateTime? startDate = null, DateTime? endDate=null, string clienteId = null)
+        public async Task<ActionResult> Index(DateTime? startDate = null, DateTime? endDate=null, string clienteId = null, string aduana = "0")
         {
-            //Por default se muestra la fecha anterior
-            //startDate = startDate ?? DateTime.Now.AddDays(-1).Date;
-            //endDate = endDate ?? DateTime.Now.AddDays(-1).Date;
+            //Cargar aduanas
+            var aduanas = AduanasRepositorio.RecuperarAduanasHinojosa();
+            ViewBag.Aduanas = new SelectList(aduanas, "ClaveAduana", "NombreCorto");
 
             //En caso de que el usuario no sea administrador se establece el clienteId con el id del cliente logueado
             if (User.IsInRole("Administrador"))
             {
                 clienteId = clienteId ?? "0";
                 int idClienteNumero = Convert.ToInt32(clienteId);
-                ViewBag.NombreCliente = await Catalogos.RecuperarPorId(idClienteNumero.ToString());
+                ViewBag.NombreCliente = (await Catalogos.RecuperarPorId(idClienteNumero.ToString())).Nom1;
                     
             }
             else
@@ -128,9 +133,13 @@ namespace InternetReports.Areas.Reportes.Controllers
             {
                 //Busqueda de resultados
                 var Resultados = new MabeReportSource(clienteId, startDate.Value, endDate.Value);
+                Resultados.TraficoPath = ConfigurationManager.AppSettings["RutaTrafico"].ToString();
+                Resultados.SorfPath = ConfigurationManager.AppSettings["RutaSORF"].ToString();
+
                 resultados = await Resultados.GetReportAsync();
 
                 var referencias = resultados.Select(s => "'" + s.Referencia + "'");
+                //TODO: VERIFICAR POSIBLES ATAQUES DE SQL INJECTION!!!
                 string referenciascadena = "";
                 string consultaObservaciones = "SELECT * FROM EdicionesReportes WHERE ReporteId = 'Operaciones' AND Campo='Observaciones' AND ClienteId = @ClienteId ";
                 string consultaFechasDeSalidaEditadas = "SELECT * FROM EdicionesReportes WHERE ReporteId = 'Operaciones' AND Campo='FechaSalida' AND ClienteId = @ClienteId ";
@@ -180,6 +189,11 @@ namespace InternetReports.Areas.Reportes.Controllers
 
                             return itemReporte;
                         });
+                    }
+
+                    if (!string.IsNullOrEmpty(aduana))
+                    {
+                        resultados = resultados.Where(w => w.Aduana == aduana);
                     }
                 }
             }

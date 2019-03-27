@@ -13,7 +13,9 @@ namespace Hinojosa.RepositorioDocumentos.Laserfiche
         protected ILFApplication aplicacionLF;
         protected ILFServer servidorLF;
         protected ILFDatabase baseDeDatosLF;
-        
+
+        public object Sesion => conexionLF;
+
         public BuscadorDocumentosLaserfiche(string server = "ServerWA", string database = "DA-HINOJOSA", string user= "ADMIN", string password = "A12345678")
         {
             conexionLF.UserName = user;
@@ -42,20 +44,24 @@ namespace Hinojosa.RepositorioDocumentos.Laserfiche
             try
             {
                 
-                LFSearch busqueda = baseDeDatosLF.CreateSearch();
                 List<DocumentoRepositorio> resultado = new List<DocumentoRepositorio>();
 
                 //Para cada referencia se buscan los documentos requeridos
                 foreach (string referencia in referencias)
                 {
+                    LFSearch busqueda = baseDeDatosLF.CreateSearch();
+
                     //Se busca una carpeta con el nombre de la referencia, pero debe estar bajo una carpeta IMPO o EXPO
                     busqueda.Command = "{LF:Name=\""+referencia+ "\",Type=\"F\" } & ({LF:ParentName=\"IMPO\"}|{LF:ParentName=\"EXPO\"})";
                     busqueda.BeginSearch(true);
                     ILFCollection coleccionHitsLF = busqueda.GetSearchHits();
+
                     
                     foreach (LFSearchHit searchHitLF in coleccionHitsLF)
                     {
-                        
+                        LFBriefcaseExporter bfex = new LFBriefcaseExporter();
+                        bfex.AddFolder(searchHitLF.Entry as LFFolder);
+                       
                         ExtraerDocumentos(resultado, referencia, searchHitLF.Entry);
 
                     }
@@ -64,7 +70,7 @@ namespace Hinojosa.RepositorioDocumentos.Laserfiche
                 return resultado;
             }catch(Exception exception)
             {
-                //throw exception;
+                throw exception;
             }
             finally
             {
@@ -127,6 +133,31 @@ namespace Hinojosa.RepositorioDocumentos.Laserfiche
             {
                 conexionLF.Terminate();
             }
+        }
+
+        public void Open()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task OpenAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Close()
+        {
+            throw new NotImplementedException();
+        }
+
+        public DocumentoRepositorio BuscaCarpetaContenedora(string Ruta)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DocumentoRepositorio BuscarCarpetaReferencia(string Referencia)
+        {
+            throw new NotImplementedException();
         }
     }
 }

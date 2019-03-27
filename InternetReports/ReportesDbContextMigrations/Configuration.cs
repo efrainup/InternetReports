@@ -9,8 +9,8 @@ namespace InternetReports.ReportesDbContextMigrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
-            MigrationsDirectory = @"ReportesDbContextMigrations";
+            //AutomaticMigrationsEnabled = true;
+            //MigrationsDirectory = @"ReportesDbContextMigrations";
         }
 
         protected override void Seed(InternetReports.SitioClientesHinojosaDbContext context)

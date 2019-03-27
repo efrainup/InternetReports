@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Reflection;
 using System.Linq;
-using RECO.Models.Trafico;
+using Hinojosa.RECOVFP.Entidades.Trafico;
 using Hinojosa.RECOVFP.DataAccessLayer.Repositorios.SORF;
 using Hinojosa.RECOVFP.DataAccessLayer.Repositorios.Trafico;
 
@@ -19,6 +19,9 @@ namespace Reports.DAL
         private DateTime final;
         Database db;
         Database dbSAAI;
+
+        public string TraficoPath { get; set; }
+        public string SorfPath { get; set; }
 
         public MabeReportSource(string connectionString = null)
         {
@@ -46,12 +49,13 @@ namespace Reports.DAL
         {
             //Obtenemos las referencias del sistema de Trafico que se van a buscar
             //var referenciasTrafico = await GetDataFromSAAI();
-            IReferenciasTraficoRepositorio repositorioTrafico = new ReferenciasTraficoRepositorioVFPInterop();
-            var referenciasTrafico = await repositorioTrafico.RecuperarPorFechaAlta(this.inicio,this.final);
+            IReferenciasTraficoRepositorio repositorioTrafico = new ReferenciasTraficoRepositorioVFPInterop(TraficoPath);
+            IEnumerable<Stctrl21Entity> referenciasTrafico = await repositorioTrafico.RecuperarPorFechaAltaClienteAsync(this.inicio,this.final, idCliente);
 
             //Creamos un parámetro para la búsqueda
             string referenciasSeparadasPorComa = "";
             string[] referencias = referenciasTrafico.Select(sel => sel.Refcia21).ToArray();
+            Srsoli10Filter[] srsoli10Filters = referenciasTrafico.Select(sel => new Srsoli10Filter() { Patente=sel.Patent21, Referencia=sel.Refcia21, Aduana=sel.Cveadu21 }).ToArray();
 
             if (referenciasTrafico.Count() > 1)
             {
@@ -63,33 +67,37 @@ namespace Reports.DAL
             }
 
             //Se recupera la información de los previos
-            IReconocimientoDePreviosRepositorio previosRepositorio = new ReconocimientoDePreviosRepositorioODBC();
+            //Se obtiene la información mediante interoperabilidad con la dll RecoVFPInteropLibraries
+            IReconocimientoDePreviosRepositorio previosRepositorio = new ReconocimientoDePreviosRepositorioVFPInterop(TraficoPath);
+            
             var informacionDePrevios = await previosRepositorio.RecuperarReconocimientosDePrevioPorReferenciasAsync(referencias);
 
             //Se recupera información de los servicios de traslados
-            var tt = new ServiciosRepositorio();
-            var listaDeServicios = await tt.RecuperarListaDeServicios(referencias);
-            
-
+            var tt = new ServiciosRepositorioVFPInterop(TraficoPath,SorfPath); //new ServiciosRepositorioODBC();
+            var listaDeServicios = await tt.RecuperarListaDeServiciosAsync(srsoli10Filters);
 
             IEnumerable<Models.Partida> t = await RecuperarReporte(referenciasSeparadasPorComa);
 
 
             //Se hace un "join" para asignar la fecha de alta
-            return t.GroupJoin(referenciasTrafico, a => a.Referencia, b => b.Refcia21.Trim(), (partida, referenciasDeTrafico) =>
+            return t.GroupJoin(referenciasTrafico, a => a.Referencia.Trim().ToLowerInvariant(), b => b.Refcia21.Trim().ToLowerInvariant(), (partida, referenciasTraficoCoincidentes) =>
             {
-                if (referenciasTrafico.Any())
+                if (referenciasTraficoCoincidentes.Any())
                 {
-                    partida.FechaApertura = referenciasTrafico.First().Frecep21;
+                    partida.FechaApertura = referenciasTraficoCoincidentes.First().Frecep21;
+                    partida.FechaArriboDeBuque = referenciasTraficoCoincidentes.First().Fecbar21;
                 }
 
                 return partida;
             }).GroupJoin(listaDeServicios, a => a.Referencia, b => b.Refcia01.Trim(), (referencia, servicios) =>
             {
                 //Se agregan las fechas de traslado, arribo de buque y salida capturados en la terminal
-                referencia.FechaTraslado = servicios.Max(m => m.Fecini01);
-                referencia.FechaArriboDeBuque = servicios.Max(m => m.Fechaimp);
-                referencia.FechaSalida = servicios.Max(m => m.Fecsal01);
+                if (servicios.Any())
+                {
+                    referencia.FechaTraslado = servicios.Max(m => m.Fecini01);
+                    referencia.FechaArriboDeBuque = servicios.Max(m => m.Fechaimp); //Incorrecto o comprobar si lo que capturan en la terminal es mas exacto que lo que se captura en tráfico
+                    referencia.FechaSalida = servicios.Max(m => m.Fecsal01);
+                }
                 return referencia;
             }).GroupJoin(informacionDePrevios, a => a.Referencia, b => b.Refcia26.Trim(), (referencia, previos) =>
               {
@@ -139,8 +147,10 @@ namespace Reports.DAL
                                     EF.sFechaEnvio AS FechaDeEnvioCuentaDeGastos,
                                     REVA.dFechaRevalidacion AS FechaRevalidacionBL,
 									PREV.dRecInicio AS [FechaPrevio],
-									PREV.dRecFin AS [FechaConclusionPrevio]
+									PREV.dRecFin AS [FechaConclusionPrevio],
+                                    RT.dFechaETA AS [FechaArriboDeBuque]
                                  FROM [1G_DAH_AA].[SIR].[SIR_60_REFERENCIAS] R WITH(NOLOCK)
+                                 LEFT JOIN [1G_DAH_AA].[SIR].[SIR_41_REG_TRANSPORTES] RT WITH(NOLOCK) ON RT.nIdRegTrans41=R.nIdRegTrans41
                                  LEFT JOIN [1G_DAH_AA].[Admin].[ADMINC_06_ADUANA_SEC] ADU WITH(NOLOCK) ON ADU.[nIdAduSec06]=R.[nIdAduSec06]
                                  LEFT JOIN [1G_DAH_AA].[SIR].SIR_149_PEDIMENTO PED WITH(NOLOCK) ON R.nIdPedimento149 = PED.nIdPedimento149
                                  LEFT JOIN dbo.GT_PROCESOS P WITH(NOLOCK) ON R.sReferencia=P.sReferencia
@@ -161,7 +171,7 @@ namespace Reports.DAL
                 sqlQuery2 += $" OR R.sReferencia IN({referenciasABuscar})";
             }
 
-            sqlQuery2 += " GROUP BY R.sReferencia,REFSAAI.sPedimento,PED.sPedimento,R.nTipoOperacion,ADU.sClaveAduana,R.sMercanciaDesc,R.dFechaApertura,P.sNumProceso,EF.sFechaEnvio,REVA.dFechaRevalidacion,PREV.dRecInicio,PREV.dRecFin,PED.dfechapago,REFSAAI.dFechaPago,FCG.fecha";
+            sqlQuery2 += " GROUP BY R.sReferencia,REFSAAI.sPedimento,PED.sPedimento,R.nTipoOperacion,ADU.sClaveAduana,R.sMercanciaDesc,R.dFechaApertura,P.sNumProceso,EF.sFechaEnvio,REVA.dFechaRevalidacion,PREV.dRecInicio,PREV.dRecFin,PED.dfechapago,REFSAAI.dFechaPago,FCG.fecha,RT.dFechaETA";
 
             DbCommand dbCommand = db.GetSqlStringCommand(string.Format(sqlQuery2, idCliente, inicio.ToString("s"), final.ToString("s")));
             using (dbCommand.Connection = db.CreateConnection())

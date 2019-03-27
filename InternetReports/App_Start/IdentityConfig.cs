@@ -27,9 +27,11 @@ namespace InternetReports.App_Start
                     )
             );
 
+            
+
             App.UseCookieAuthentication(new CookieAuthenticationOptions()
             {
-                
+               //  ExpireTimeSpan = TimeSpan.FromMinutes(1),
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new Microsoft.Owin.PathString("/Account/Login"),
                 Provider = new CookieAuthenticationProvider
@@ -45,9 +47,14 @@ namespace InternetReports.App_Start
                           user.GenerateUserIdentity(something.Identity);
                      },
                     OnValidateIdentity =  SecurityStampValidator.OnValidateIdentity<AppUserManager,AppUser>(
+                        
                         validateInterval: TimeSpan.FromMinutes(20),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager)
+                        regenerateIdentity: (manager, user) =>
+                        {
+                            return user.GenerateUserIdentityAsync(manager);
+                        }
                     )
+                    
                 }
             });
         }

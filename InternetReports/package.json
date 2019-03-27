@@ -1,0 +1,12 @@
+{
+  "name": "InternetReports",
+  "version": "1.0.0",
+  "description": "Sitio para clientes Hinojosa",
+  "main": "index.js",
+  "author": "D.A. Hinojosa",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    
+  }
+}

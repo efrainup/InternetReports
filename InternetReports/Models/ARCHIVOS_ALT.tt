@@ -33,16 +33,16 @@
     Settings.IncludeComments = CommentsStyle.AtEndOfField; // Adds comments to the generated code
     Settings.IncludeExtendedPropertyComments = CommentsStyle.InSummaryBlock; // Adds extended properties as comments to the generated code
     Settings.IncludeConnectionSettingComments = true; // Add comments describing connection settings used to generate file
-    Settings.IncludeViews = false;
+    Settings.IncludeViews = true;
     Settings.IncludeSynonyms = false;
-    Settings.IncludeStoredProcedures = false;
+    Settings.IncludeStoredProcedures = true;
     Settings.IncludeTableValuedFunctions = false; // If true, you must set IncludeStoredProcedures = true, and install the "EntityFramework.CodeFirstStoreFunctions" Nuget Package.
     Settings.DisableGeographyTypes = false; // Turns off use of System.Data.Entity.Spatial.DbGeography and System.Data.Entity.Spatial.DbGeometry as OData doesn't support entities with geometry/geography types.
     //Settings.CollectionInterfaceType = "System.Collections.Generic.List"; // Determines the declaration type of collections for the Navigation Properties. ICollection is used if not set.
     Settings.CollectionType = "System.Collections.Generic.List";  // Determines the type of collection for the Navigation Properties. "ObservableCollection" for example. Add "System.Collections.ObjectModel" to AdditionalNamespaces if setting the CollectionType = "ObservableCollection".
     Settings.NullableShortHand = true; //true => T?, false => Nullable<T>
     Settings.AddIDbContextFactory = true; // Will add a default IDbContextFactory<DbContextName> implementation for easy dependency injection
-    Settings.AddUnitTestingDbContext = false; // Will add a FakeDbContext and FakeDbSet for easy unit testing
+    Settings.AddUnitTestingDbContext = true; // Will add a FakeDbContext and FakeDbSet for easy unit testing
     Settings.IncludeQueryTraceOn9481Flag = false; // If SqlServer 2014 appears frozen / take a long time when this file is saved, try setting this to true (you will also need elevated privileges).
     Settings.IncludeCodeGeneratedAttribute = true; // If true, will include the GeneratedCode attribute, false to remove it.
     Settings.UsePrivateSetterForComputedColumns = true; // If the columns is computed, use a private setter.
@@ -164,7 +164,7 @@
     Settings.SchemaFilterExclude = null;
     Settings.SchemaFilterInclude = null;
     //Settings.TableFilterExclude = null;
-    Settings.TableFilterInclude = new Regex("cat_clientes");
+    Settings.TableFilterInclude = new Regex("^cat_clientes$|^SQ_VT_PedimentosSaaiSir$");
     Settings.ColumnFilterExclude = null;
 
     // Filtering of tables using a function. This can be used in conjunction with the Regex's above.
@@ -183,7 +183,7 @@
     // Stored Procedures ******************************************************************************************************************
     // Use the following regex filters to include or exclude stored procedures
     Settings.StoredProcedureFilterExclude = null;
-    Settings.StoredProcedureFilterInclude = null;
+    Settings.StoredProcedureFilterInclude = new Regex("USP_RecuperarComplementosDePagoPorCliente");
 
     // Filtering of stored procedures using a function. This can be used in conjunction with the Regex's above.
     // Regex are used first to filter the list down, then this function is run last.
@@ -194,6 +194,9 @@
         //if(sp.Schema.Equals("dbo", StringComparison.InvariantCultureIgnoreCase) && sp.NameHumanCase.ToLowerInvariant().Contains("order"))
         //    return false;
 
+		//string[] spPermitidos = {"USP_RecuperarComplementosDePagoPorCliente"};
+
+		//if USP_RecuperarComplementosDePagoPorCliente
         return true;
     };
 
@@ -203,6 +206,15 @@
     // Example:
     Settings.TableRename = (string name, string schema, bool isView) =>
     {
+		if (name.StartsWith("SQ_")){
+            name = name.Remove(0, 3);
+		}
+		
+		if(isView && name.Contains("VT_")){
+            name = name.Replace("VT_","") + "View";
+		}
+
+
         // Example
         //if (name.StartsWith("tbl"))
         //    name = name.Remove(0, 3);

@@ -86,7 +86,7 @@
         <td>
             @if (item.Procesado)
             {
-                Html.ActionLink("Descargar", "Descargar", new { folioDescarga = item.NombreSolicitud });
+                @Html.ActionLink("Descargar", "Descargar", new { folioDescarga = item.NombreSolicitud });
             }
         </td>
     </tr>

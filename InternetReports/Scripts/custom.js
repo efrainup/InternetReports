@@ -233,4 +233,7 @@ function onScroll(event){
     $(document).on('hide','.accordion', function (e) {
         $(this).find('.accordion-heading').not($(e.target)).removeClass('accordion-opened');
         //$('.accordion-heading i').toggleClass('fa-chevron-right fa-chevron-down');
-    });
+});
+
+
+//Custom JS

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Fakes xmlns="http://schemas.microsoft.com/fakes/2011/">
+  <Assembly Name="System"/>
+</Fakes>

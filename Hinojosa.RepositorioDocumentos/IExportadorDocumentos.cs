@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hinojosa.RepositorioDocumentos
 {
-    public interface IExportadorDocumentos<T> where T: class
+    public interface IExportadorDocumentos<T> : IConectable where T: class
     {
         /// <summary>
         /// Exporta los documentos ala ruta especificada

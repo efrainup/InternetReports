@@ -1,0 +1,132 @@
+﻿@using InternetReports.Areas.Operacion.Models
+@model InternetReports.Areas.Operacion.Models.BusquedaExpedienteViewModel
+
+@{
+    ViewBag.Title = "Descarga de expedients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Descarga de expedientes</h2>
+
+@using (Html.BeginForm("ListadoExpediente", "DescargaExpedientes"))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Busqueda de Expediente </h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.Referencia, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.Referencia, new { htmlAttributes = new { @class = "form-control", maxlength = "11" } })
+                        @Html.ValidationMessageFor(model => model.Referencia, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.Pedimento, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.Pedimento, new { htmlAttributes = new { @class = "form-control", maxlength = "7", type="numeric" } })
+                        @Html.ValidationMessageFor(model => model.Pedimento, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.Aduana, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.Aduana, new { htmlAttributes = new { @class = "form-control",type="numeric" } })
+                        @Html.ValidationMessageFor(model => model.Aduana, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.Año, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.Año, new { htmlAttributes = new { @class = "form-control", placeholder = "yyyy", type="numeric" } })
+                        @Html.ValidationMessageFor(model => model.Año, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <input type="submit" id="boton-buscar-expediente" value="Buscar expediente" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+}
+
+@using (Html.BeginForm("Descarga", "DescargaExpedientes",FormMethod.Post,new { id="form-descarga-expedientes" }))
+{
+    @Html.HiddenFor(m => m.Aduana)
+    @Html.HiddenFor(m => m.Año)
+    @Html.HiddenFor(m => m.Pedimento)
+    @Html.HiddenFor(m => m.Referencia)
+
+    bool contieneDocumentos = Model != null && Model.ArchivosExpediente != null && Model.ArchivosExpediente.Count > 0;
+    if (contieneDocumentos)
+    {
+        <div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"  id="checkbox-seleccionar-todo" /> Seleccionar todos
+                </label>
+            </div>
+            <ul class="list-group checked-list-box" id="listado-archivos-expediente">
+
+                @for (int i = 0; i < Model.ArchivosExpediente.Count; i++)
+                {
+                    <li class="list-group-item">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBox($"ArchivosExpediente[{i}].Seleccionado", Model.ArchivosExpediente[i].Seleccionado)
+                                @Html.Hidden($"ArchivosExpediente[{i}].Identificador", Model.ArchivosExpediente[i].Identificador)
+                                @Model.ArchivosExpediente[i].Nombre
+                            </label>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <button class="btn btn-primary">Descargar</button>
+    }
+    else
+    {
+        <div class="">
+            @if (!ViewData.ModelState.IsValid)
+            {
+            <div class="alert alert-danger alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+                @Html.ValidationSummary()
+            </div>
+            }
+            else
+            {
+                <span>No hay archivos en este expediente</span>
+            }
+        </div>
+        
+    }
+
+}
+
+@section scripts{
+    <script>
+        (function ($) {
+            $(document).ready(function () {
+               //Funcionalidad de seleccionar todos
+                $("#checkbox-seleccionar-todo").on("change", function (elementSender) {
+                    $("#listado-archivos-expediente input:checkbox").prop("checked", elementSender.target.checked);
+                });
+
+                
+            });
+
+        })(jQuery);
+    </script>
+}  

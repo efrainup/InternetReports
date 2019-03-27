@@ -28,21 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.timerReadMessageQueue = new System.Windows.Forms.Timer(this.components);
-            // 
-            // timerReadMessageQueue
-            // 
-            this.timerReadMessageQueue.Tick += new System.EventHandler(this.timerReadMessageQueue_Tick);
             // 
             // DescargaExpedientesLaserFiche
             // 
-            this.ServiceName = "Service1";
+            this.ServiceName = "DescargaExpedientesLaserFiche";
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer timerReadMessageQueue;
     }
 }

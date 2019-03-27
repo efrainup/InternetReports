@@ -23,6 +23,7 @@ namespace InternetReports.Controllers
             get
             {
                 _userManager = _userManager ?? HttpContext.GetOwinContext().Get<AppUserManager>();
+                _userManager.UserValidator = new UserValidator<AppUser>(_userManager) { AllowOnlyAlphanumericUserNames = false };
                 return _userManager;
             }
             private set

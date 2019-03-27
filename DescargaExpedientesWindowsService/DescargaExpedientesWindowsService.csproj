@@ -11,6 +11,21 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,8 +47,39 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Contrib, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EF6.Contrib.1.0.5\lib\net45\EntityFramework.Contrib.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Hinojosa.RepositorioDocumentos, Version=2.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hinojosa.RepositorioDocumentos.2.0.2.1\lib\net461\Hinojosa.RepositorioDocumentos.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.LFSO100Lib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=607dd73ee2bd1c00, processorArchitecture=x86">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Laserfiche.DocumentServices, Version=10.0.0.0, Culture=neutral, PublicKeyToken=3f98b3eaee6c16a6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\Laserfiche.DocumentServices\v4.0_10.0.0.0__3f98b3eaee6c16a6\Laserfiche.DocumentServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Laserfiche.RepositoryAccess, Version=10.0.0.0, Culture=neutral, PublicKeyToken=3f98b3eaee6c16a6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\Laserfiche.RepositoryAccess\v4.0_10.0.0.0__3f98b3eaee6c16a6\Laserfiche.RepositoryAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -45,28 +91,99 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchivosAltContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArchivosAltContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ArchivosAltContext2.cs">
+      <DependentUpon>ArchivosAltContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ArchivosAltContext2Factory.cs">
+      <DependentUpon>ArchivosAltContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="DescargaExpedientesLaserFiche.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DescargaExpedientesLaserFiche.Designer.cs">
       <DependentUpon>DescargaExpedientesLaserFiche.cs</DependentUpon>
     </Compile>
+    <Compile Include="IArchivosAltContext2.cs">
+      <DependentUpon>ArchivosAltContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ISolicitudesDbContext.cs">
+      <DependentUpon>SitioClientes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SitioClientes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SitioClientes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Solicituddescargamasiva.cs">
+      <DependentUpon>SitioClientes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SolicituddescargamasivaConfiguration.cs">
+      <DependentUpon>SitioClientes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SolicitudesDbContext.cs">
+      <DependentUpon>SitioClientes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SolicitudesDbContextFactory.cs">
+      <DependentUpon>SitioClientes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqPedimentosSirSaaiReturnModel.cs">
+      <DependentUpon>ArchivosAltContext.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Hinojosa.RepositorioDocumentos\Hinojosa.RepositorioDocumentos.csproj">
-      <Project>{0c294b8c-935e-4c8c-892e-46c56a7b68b0}</Project>
-      <Name>Hinojosa.RepositorioDocumentos</Name>
-    </ProjectReference>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EF.Reverse.POCO.Core.ttinclude" />
+    <None Include="EF.Reverse.POCO.ttinclude" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DescargaExpedientesLaserFiche.resx">
       <DependentUpon>DescargaExpedientesLaserFiche.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ArchivosAltContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ArchivosAltContext.cs</LastGenOutput>
+    </Content>
+    <Content Include="SitioClientes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SitioClientes.cs</LastGenOutput>
+    </Content>
+    <Content Include="TemplateNotificacion.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,7 +9,8 @@ namespace InternetReports.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            ContextKey = "InternetReports.AccountDbContext";
         }
 
         protected override void Seed(InternetReports.AccountDbContext context)

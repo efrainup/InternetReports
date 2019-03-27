@@ -34,6 +34,10 @@ namespace Hinojosa.RepositorioDocumentos
         /// </summary>
         public string Plantilla { get; set; }
         /// <summary>
+        /// Id de la plantilla a la que pertenece el documento en el repositorio 
+        /// </summary>
+        public int PlantillaId { get; set; }
+        /// <summary>
         /// Tipo del documento en el repositorio
         /// </summary>
         public string TipoMime { get; set; }

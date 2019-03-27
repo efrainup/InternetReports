@@ -10,5 +10,10 @@ namespace InternetReports
     {
         
         public DbSet<Areas.Operacion.Models.SolicitudDescargaMasiva> DescargasMasivas { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

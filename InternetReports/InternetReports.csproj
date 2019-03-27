@@ -49,11 +49,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Hinojosa.RepositorioDocumentos, Version=2.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hinojosa.RepositorioDocumentos.2.0.2.1\lib\net461\Hinojosa.RepositorioDocumentos.dll</HintPath>
+    </Reference>
+    <Reference Include="Hinojosa.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hinojosa.Utilities.1.0.0\lib\net461\Hinojosa.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Laserfiche.RepositoryAccess, Version=10.0.0.0, Culture=neutral, PublicKeyToken=3f98b3eaee6c16a6" />
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -92,6 +99,8 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -188,12 +197,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppExtensions.cs" />
-    <Compile Include="App_Data\AccountDbContext.cs" />
+    <Compile Include="Areas\Operacion\Controllers\DescargaExpedientesController.cs" />
+    <Compile Include="Areas\Operacion\Models\ArchivoExpedienteViewModel.cs" />
+    <Compile Include="Areas\Operacion\Models\BusquedaExpedienteViewModel.cs" />
+    <Compile Include="Models\AccountDbContext.cs" />
     <Compile Include="AppUserManager.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Contabilidad\ContabilidadAreaRegistration.cs" />
+    <Compile Include="Areas\Contabilidad\Controllers\ComprobantesFiscalesElectronicosController.cs" />
+    <Compile Include="Areas\Contabilidad\Models\BusquedaComprobantesFiscalesElectronicos.cs" />
     <Compile Include="Areas\Operacion\Controllers\ExpedientesController.cs" />
     <Compile Include="Areas\Operacion\Controllers\SolicitudesDescargasMasivasController.cs" />
     <Compile Include="Areas\Operacion\Models\Expediente.cs" />
@@ -233,10 +248,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ARCHIVOS_ALT.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CatClientesDir.cs">
+    <Compile Include="Models\FakeARCHIVOS_ALT.cs">
       <DependentUpon>ARCHIVOS_ALT.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CatClientesDirConfiguration.cs">
+    <Compile Include="Models\FakeDbSet.cs">
       <DependentUpon>ARCHIVOS_ALT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginViewModel.cs" />
@@ -255,8 +270,17 @@
     <Compile Include="Models\IARCHIVOS_ALT.cs">
       <DependentUpon>ARCHIVOS_ALT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PedimentosSaaiSirView.cs">
+      <DependentUpon>ARCHIVOS_ALT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PedimentosSaaiSirViewConfiguration.cs">
+      <DependentUpon>ARCHIVOS_ALT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UspRecuperarComplementosDePagoPorClienteReturnModel.cs">
+      <DependentUpon>ARCHIVOS_ALT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="App_Data\SitioClientesHinojosaDbContext.cs" />
+    <Compile Include="Models\SitioClientesHinojosaDbContext.cs" />
     <Compile Include="ReportesDbContextMigrations\201807172139401_AgregarObservacionesReportes.cs" />
     <Compile Include="ReportesDbContextMigrations\201807172139401_AgregarObservacionesReportes.Designer.cs">
       <DependentUpon>201807172139401_AgregarObservacionesReportes.cs</DependentUpon>
@@ -288,7 +312,7 @@
     <Compile Include="ReportesDbContextMigrations\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Data\ArchivosALTContext.cs" />
+    <Compile Include="Models\ArchivosALTContext.cs" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -301,6 +325,46 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\logotipohinojosa-95.png" />
+    <Content Include="img\svg-filestypes\3ds.svg" />
+    <Content Include="img\svg-filestypes\aac.svg" />
+    <Content Include="img\svg-filestypes\ai.svg" />
+    <Content Include="img\svg-filestypes\avi.svg" />
+    <Content Include="img\svg-filestypes\bmp.svg" />
+    <Content Include="img\svg-filestypes\cad.svg" />
+    <Content Include="img\svg-filestypes\cdr.svg" />
+    <Content Include="img\svg-filestypes\css.svg" />
+    <Content Include="img\svg-filestypes\dat.svg" />
+    <Content Include="img\svg-filestypes\dll.svg" />
+    <Content Include="img\svg-filestypes\dmg.svg" />
+    <Content Include="img\svg-filestypes\doc.svg" />
+    <Content Include="img\svg-filestypes\eps.svg" />
+    <Content Include="img\svg-filestypes\fla.svg" />
+    <Content Include="img\svg-filestypes\flv.svg" />
+    <Content Include="img\svg-filestypes\gif.svg" />
+    <Content Include="img\svg-filestypes\html.svg" />
+    <Content Include="img\svg-filestypes\indd.svg" />
+    <Content Include="img\svg-filestypes\iso.svg" />
+    <Content Include="img\svg-filestypes\jpg.svg" />
+    <Content Include="img\svg-filestypes\js.svg" />
+    <Content Include="img\svg-filestypes\midi.svg" />
+    <Content Include="img\svg-filestypes\mov.svg" />
+    <Content Include="img\svg-filestypes\mp3.svg" />
+    <Content Include="img\svg-filestypes\mpg.svg" />
+    <Content Include="img\svg-filestypes\pdf.svg" />
+    <Content Include="img\svg-filestypes\php.svg" />
+    <Content Include="img\svg-filestypes\png.svg" />
+    <Content Include="img\svg-filestypes\ppt.svg" />
+    <Content Include="img\svg-filestypes\ps.svg" />
+    <Content Include="img\svg-filestypes\psd.svg" />
+    <Content Include="img\svg-filestypes\raw.svg" />
+    <Content Include="img\svg-filestypes\sql.svg" />
+    <Content Include="img\svg-filestypes\svg.svg" />
+    <Content Include="img\svg-filestypes\tif.svg" />
+    <Content Include="img\svg-filestypes\txt.svg" />
+    <Content Include="img\svg-filestypes\wmv.svg" />
+    <Content Include="img\svg-filestypes\xls.svg" />
+    <Content Include="img\svg-filestypes\xml.svg" />
+    <Content Include="img\svg-filestypes\zip.svg" />
     <Content Include="Models\ARCHIVOS_ALT.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ARCHIVOS_ALT1.cs</LastGenOutput>
@@ -323,6 +387,10 @@
     <Content Include="Areas\Operacion\Views\web.config" />
     <Content Include="Areas\Operacion\Views\SolicitudesDescargasMasivas\Index.cshtml" />
     <Content Include="Areas\Operacion\Views\SolicitudesDescargasMasivas\NuevaSolicitud.cshtml" />
+    <Content Include="Areas\Contabilidad\Views\web.config" />
+    <Content Include="Areas\Contabilidad\Views\ComprobantesFiscalesElectronicos\Index.cshtml" />
+    <Content Include=".yarnrc" />
+    <Content Include="Areas\Operacion\Views\DescargaExpedientes\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Readme.md" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -393,9 +461,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\ArchivosALTEntidades\" />
+    <Folder Include="Areas\Contabilidad\Views\Shared\" />
     <Folder Include="Areas\Operacion\Views\Expedientes\" />
     <Folder Include="Areas\Operacion\Views\Shared\" />
-    <Folder Include="d\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807052249294_InitialCreate.resx">

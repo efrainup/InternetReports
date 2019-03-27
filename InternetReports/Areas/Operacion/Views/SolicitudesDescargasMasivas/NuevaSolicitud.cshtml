@@ -15,13 +15,13 @@
     <h4>Solicitud de descargas masivas de expedientes</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
+    @*<div class="form-group">
         @Html.LabelFor(model => model.NombreSolicitud, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.NombreSolicitud, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.NombreSolicitud, "", new { @class = "text-danger" })
         </div>
-    </div>
+    </div>*@
 
     <div class="form-group">
         @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -50,7 +50,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Notificar, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Notificar, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Notificar, new { htmlAttributes = new { @class = "form-control", placeholder="user@example.com" } })
             @Html.ValidationMessageFor(model => model.Notificar, "", new { @class = "text-danger" })
         </div>
     </div>

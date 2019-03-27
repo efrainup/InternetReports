@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using InternetReports.AppExtensions;
 using System.Threading.Tasks;
 using System.Data.Entity.Validation;
+using System.Messaging;
 
 namespace InternetReports.Areas.Operacion.Controllers
 {
@@ -14,6 +15,7 @@ namespace InternetReports.Areas.Operacion.Controllers
     public class SolicitudesDescargasMasivasController : Controller
     {
         protected SitioClientesHinojosaDbContext dbContext = new SitioClientesHinojosaDbContext();
+        public MessageQueue ColaDeSolicitudes = new MessageQueue(".\\private$\\hin_solicitudesdescargaexpedientes");
 
         // GET: Operacion/SolicitudesDescargasMasivas
         public ActionResult Index()
@@ -44,12 +46,6 @@ namespace InternetReports.Areas.Operacion.Controllers
 
         }
 
-        //// GET: Operacion/SolicitudesDescargasMasivas/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-
         // GET: Operacion/SolicitudesDescargasMasivas/NuevaSolicitud
         [HttpGet]
         public ActionResult NuevaSolicitud()
@@ -72,14 +68,23 @@ namespace InternetReports.Areas.Operacion.Controllers
                         Cliente = User.Identity.GetNombreCliente(),
                         FechaInicio = solicitudDescargaMasiva.FechaInicio,
                         FechaFin = solicitudDescargaMasiva.FechaFin,
-                        Descripcion = "",
+                        Descripcion = solicitudDescargaMasiva.Descripcion,
                         FechaSolicitud = DateTime.Now,
                         Notificar=solicitudDescargaMasiva.Notificar,
-                        NombreSolicitud="SDM-"+ User.Identity.GetClientId()+"-" + DateTime.Now.ToString("yyyymmdd-hhMMss")
+                        NombreSolicitud="SDM-"+ User.Identity.GetClientId()+"-" + DateTime.Now.ToString("yyyyMMdd-hhmmss")
                     };
 
                     dbContext.DescargasMasivas.Add(solicitud);
                     await dbContext.SaveChangesAsync();
+
+                    //var formatter = new XmlMessageFormatter(new Type[] { typeof(string) });
+
+                    //Message m = new Message();
+                    //m.Formatter = formatter;
+                    //m.Body = solicitud;
+                    //ColaDeSolicitudes.Formatter = formatter;
+                    
+                    //ColaDeSolicitudes.Send(solicitud);
                 }
 
                 return RedirectToAction("Index");
@@ -105,48 +110,5 @@ namespace InternetReports.Areas.Operacion.Controllers
             return View();
         }
 
-        //// GET: Operacion/SolicitudesDescargasMasivas/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: Operacion/SolicitudesDescargasMasivas/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: Operacion/SolicitudesDescargasMasivas/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: Operacion/SolicitudesDescargasMasivas/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }

@@ -72,9 +72,9 @@ namespace InternetReports.Models
             Property(x => x.Nombre).HasColumnName(@"nombre").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(48);
             Property(x => x.Calle).HasColumnName(@"calle").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(80);
             Property(x => x.NumInt).HasColumnName(@"num_int").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
-            Property(x => x.NumExt).HasColumnName(@"num_ext").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(30);
+            Property(x => x.NumExt).HasColumnName(@"num_ext").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(120);
             Property(x => x.Col).HasColumnName(@"col").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(70);
-            Property(x => x.Deleg).HasColumnName(@"deleg").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(50);
+            Property(x => x.Deleg).HasColumnName(@"deleg").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(125);
             Property(x => x.Curp).HasColumnName(@"curp").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(40);
             Property(x => x.Calles).HasColumnName(@"calles").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(40);
             Property(x => x.IdCtoCat).HasColumnName(@"id_cto_cat").HasColumnType("int").IsRequired();
@@ -161,6 +161,11 @@ namespace InternetReports.Models
             Property(x => x.FluEfe).HasColumnName(@"flu_efe").HasColumnType("bit").IsRequired();
             Property(x => x.CTimbAnt).HasColumnName(@"c_timb_ant").HasColumnType("bit").IsRequired();
             Property(x => x.IdTipHos).HasColumnName(@"id_tip_hos").HasColumnType("int").IsRequired();
+            Property(x => x.ClaveStp).HasColumnName(@"claveSTP").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(5);
+            Property(x => x.ChkStpMultisucursal).HasColumnName(@"chkStpMultisucursal").HasColumnType("int").IsRequired();
+            Property(x => x.CGtaObl).HasColumnName(@"c_gta_obl").HasColumnType("tinyint").IsRequired();
+            Property(x => x.PtgGtaObl).HasColumnName(@"ptg_gta_obl").HasColumnType("float").IsRequired();
+            Property(x => x.DepAut).HasColumnName(@"dep_aut").HasColumnType("int").IsRequired();
         }
     }
 
